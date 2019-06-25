@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Invoking a bugzilla query URL from the command line - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">Invoking a bugzilla query URL from the command line</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2014-05-20T10:00:00-04:00" itemprop="datePublished">Tue 20 May 2014
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p>The /usr/bin/bugzilla tool provided by <a href="https://fedorahosted.org/python-bugzilla/">python-bugzilla</a> is quite handy for managing batch actions on bugs or quickly performing simple queries. However when you want to perform a crazy query with all sorts of boolean rules that the web UI exposes, the command line gets pretty unwieldy.</p>
+<p>However, there's a simple workaround for this. Generate a query URL using the bugzilla web UI, and pass it to /usr/bin/bugzilla like:</p>
+<p><code>bugzilla query --from-url "$url"</code></p>
+<p>That's it! Then you can tweak the output as you want using --outputformat or similar. This also works for savedsearch URLs as well.</p>
+<p>So, say I go to the bugzilla web UI and say 'show me all open, upstream libvirt bugs that haven't received a comment in since 2013'. It generates a massive URL. Here's what the URL looks like:</p>
+<blockquote>
+<p>https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=POST&amp;bug_status=MODIFIED&amp;bug_status=ON_DEV&amp;bug_status=ON_QA&amp;bug_status=VERIFIED&amp;bug_status=RELEASE_PENDING&amp;classification=Community&amp;component=libvirt&amp;f1=longdesc&amp;list_id=2372821&amp;n1=1&amp;o1=changedafter&amp;product=Virtualization%20Tools&amp;query_format=advanced&amp;v1=2013-12-31</p>
+</blockquote>
+<p>Just pass that that thing as $url in the above command, and you should see the same results as the web search (if your results aren't the same, you might need to do 'bugzilla login' first to cache credentials).</p>
+<p>This is also easy to do via the python API:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+
+<span class="kn">import</span> <span class="nn">bugzilla</span>
+<span class="n">bzapi</span> <span class="o">=</span> <span class="n">bugzilla</span><span class="o">.</span><span class="n">Bugzilla</span><span class="p">(</span><span class="s2">&quot;bugzilla.redhat.com&quot;</span><span class="p">)</span>
+<span class="n">buglist</span> <span class="o">=</span> <span class="n">bzapi</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">bzapi</span><span class="o">.</span><span class="n">url_to_query</span><span class="p">(</span><span class="s2">&quot;URL&quot;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">bug</span> <span class="ow">in</span> <span class="n">buglist</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">bug</span><span class="o">.</span><span class="n">summary</span>
+</pre></div>
+
+
+<p>The caveat: as of now this only works with bugzilla.redhat.com, which has an API extension that allows it to interpret the URL syntax as regular query parameters. My understanding is that this may be available upstream at some point, so other bugzilla instances will benefit as well.</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>

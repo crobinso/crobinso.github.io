@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>cubietruck setup, though my card reader is flaky - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">cubietruck setup, though my card reader is flaky</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2015-02-28T10:39:00-05:00" itemprop="datePublished">Sat 28 February 2015
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a><a href="https://blog2.wikichoon.com/tag/virt.html">virt </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p>Finally setup my cubietruck that I purchased late last year. Here it is under my desk running Fedora 21:</p>
+<p><a href="http://2.bp.blogspot.com/-56h2OT138dY/VPHdMZi5DeI/AAAAAAAAAFs/8Adre1SpAQA/s1600/IMAG0315.jpg"><img alt="" height="181" src="http://2.bp.blogspot.com/-56h2OT138dY/VPHdMZi5DeI/AAAAAAAAAFs/8Adre1SpAQA/s1600/IMAG0315.jpg" width="320"></a></p>
+<p>Riveting, I know.</p>
+<p>I mostly just followed bits from <a href="https://rwmj.wordpress.com/2013/12/13/kvm-working-on-the-cubietruck/">Rich's</a> and <a href="http://kashyapc.com/2014/12/09/cubietruck-qemu-kvm-and-fedora/">Kashyap's</a> blog posts, and the <a href="http://fedoraproject.org/wiki/Architectures/ARM/F21/Installation">Fedora ARM install instructions</a>. I used this <a href="https://www.amazon.com/gp/product/B009T2ZR6W/ref=oh_aui_search_detailpage?ie=UTF8&amp;psc=1">serial adapter</a>, though note you need to make sure to make sure the TX pin on the board is wired to the RX pin USB end, and vice versa. Probably obvious to some people but I would have been stumped if I hadn't seen it mentioned in an Amazon review.</p>
+<p>Everything is working now but my hardware has a bit of a malfunction that I mentioned in <a href="https://lists.fedoraproject.org/pipermail/arm/2015-February/009120.html">this fedora-arm thread</a>. Basically the device can boot off the SD card, but linux doesn't detect it. If I wiggle the card around a lot while inserting it I can get linux to detect it about 1/5 of the time, but after rebooting the device is back to not being detected. In the thread, Hans guessed that the card-detect pin is flaky or not connecting well, but it doesn't affect the cubieboard firmware which just ignores that pin and assumes the device is present.</p>
+<p>Since I was planning on using a SATA drive anyways, this isn't that big of a deal, just delete everything on the SD card except u-boot, and the SATA drive will be used /boot and /. But if I ever want to update u-boot on the SD card, I'll have to go through the whole wiggle process again and manually 'dd' it into place using the steps on the Fedora install page.</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>

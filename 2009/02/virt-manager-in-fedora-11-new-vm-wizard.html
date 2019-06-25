@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>virt-manager in Fedora 11: 'New VM' wizard redesign - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">virt-manager in Fedora 11: 'New VM' wizard redesign</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2009-02-27T14:34:00-05:00" itemprop="datePublished">Fri 27 February 2009
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p>There are some pretty big changes queued up for virt-manager in Fedora 11: foremost among them is a completely redesigned 'New Virtual Machine' wizard.</p>
+<p>The current wizard has clearly started to show its age. The original design was largely based on xen specific assumptions and the state of libvirt/virtinst at the time: many of those assumptions don't apply today, or require a bit more thought since we now support both xen and qemu based VMs.</p>
+<p>So, some screenshots!</p>
+<p>Page 1: VM Name and Install method</p>
+<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg1-1.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg1-1.png"></a></p>
+<p>We scrapped the 'intro' page: I don't think anyone will miss it. Having the 'name' box occupy an entire page by itself was also a bit overkill, so we did away with that as well.</p>
+<p>One of the biggest changes we've made from the old design is that we no longer ask upfront about paravirt vs. fullvirt, VM architecture, or qemu vs. kvm vs. xenner. For new users, this has been an endless pain point ("Why can't I install a PV kvm guest?" among others) and is really a distinction we don't need to force on people: we are certainly in a position to choose sensible defaults (and for kvm, paravirt/virtio has always been setup in the background depending on what OS version is being installed). The logic for the defaults are now as follows:</p>
+<ul>
+<li>For the qemu libvirt driver, use the first available of the following: kvm, plain qemu, xenner.</li>
+<li>For the xen libvirt driver, use paravirt if the user selects a URL install and the tree supports it, otherwise use fullvirt.</li>
+<li>Always default to the host architecture for new VMs.</li>
+</ul>
+<p>We allow the user to deviate from these defaults in the final screen under the 'Advanced Options' section.</p>
+<p>Also, you'll notice there is a generic 'Computer' icon in the wizard header: this will soon be replaced by a custom icon.</p>
+<p>The one new piece here is the option to choose the libvirt connection to install on. Rather than have the 'New' button on the main manager window be conditionally sensitive, the user can now always launch the wizard, choosing the connection from there.</p>
+<p>Page 2: Install media info</p>
+<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-local.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-local.png"></a></p>
+<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-url.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-url.png"></a></p>
+<p>This hasn't deviated much from the current options: the one difference is that the OS Type/Variant choice has been moved to these screens. This will allow us in the future to offer automatic distro detection based on the selected install media (we may have this for URL installs by the time the release goes out).</p>
+<p>Since PXE installs require no extra input, the screen will only have the OS Type/Variant option listed.</p>
+<p>Page 3: CPU + Mem details</p>
+<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg3-1.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg3-1.png"></a></p>
+<p>We dropped the max memory vs. default memory split that is in the existing wizard: it doesn't have much meaning the qemu/kvm world, and even for xen it isn't something that needs to be asked up front. The user can always change it later.</p>
+<p>Also, rather than list tons of warning information about overcommitting vcpus, we simply cap the amount at the number available on the host. If for some reason a user wants to allocate more than the host amount of virtual cpus to a VM (say for development purposes) it can easily be done post-install.</p>
+<p>Page 4: Storage</p>
+<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg4-1.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg4-1.png"></a></p>
+<p>The main change here is that we removed the block device vs. file device dichotomy: we are pretty capable of making this distinction behind the scenes.</p>
+<p>The option is also now available to skip adding storage altogether: this is useful in the case of Live CDs or diskless PXE booting.</p>
+<p>When adding storage, the two options are now:</p>
+<p>1 - "Create a disk image on the computer's hard drive": We set up a libvirt storage pool behind the scenes to point to the default location (if using PolicyKit or running as root, this is /var/lib/libvirt/images) and allocate a disk image based on the requested size.</p>
+<p>In the future, the default location will be configurable with a global preference.</p>
+<p>2 - "Use managed or other existing storage" : This allows pointing to an existing path, or provisioning more complex storage on demand (this is dependent on a libvirt storage API aware browser dialog, which is ongoing work. For the time being, this just launches a local GTK file browser).</p>
+<p>The one piece not shown here is the option to choose sparse Vs. non-sparse. We will be putting this back in before the final version is done.</p>
+<p>Page 5: Summary and Advanced Options</p>
+<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-1.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-1.png"></a></p>
+<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-2.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-2.png"></a></p>
+<p>The summary section is pretty straight forward, no surprises here. The 'Advanced Options' section encompasses networking, hypervisor, and architecture options. The hypervisor and arch defaults were explained above.</p>
+<p>For networking, the default is:</p>
+<ul>
+<li>A bridge device if any exist, else</li>
+<li>Virtual Network 'default' (comes with libvirt), else</li>
+<li>First available virtual network, else</li>
+<li>No networking!</li>
+</ul>
+<p>This logic will be globally configurable at some point, e.g. if you wanted to use a specific bridge device or virtual network for all new VMs. We also decided to put all the available networking options into 1 drop down, rather than have 2 separate sections for bridges vs. virtual networking.</p>
+<p>I think that covers all the significant bits, hopefully other than that the screenshots speak for themselves. I hope you'll agree it's a much simpler and usable layout. This design was largely done by Tim Allen (former Red Hatter) and Jeremy Perry (current Red Hatter), so a big thank you to them.</p>
+<p>Any feedback is appreciated: none of this set in stone.</p>
+<p>Thanks,
+Cole</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>

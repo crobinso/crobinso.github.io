@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Using git-remote-hg with bitbucket - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">Using git-remote-hg with bitbucket</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2015-01-09T13:58:00-05:00" itemprop="datePublished">Fri 09 January 2015
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p>Occasionally I want to contribute to a project using mercurial on bitbucket.org (like pylint). Since I always forget the steps, I'm documenting here how I've managed that without having to actually [use]{.underline} mercurial.</p>
+<ul>
+<li>From bitbucket.org, log in, find the repo you want to contribute to, use the web UI to fork it under your account.</li>
+<li><code>yum install git-remote-hg</code></li>
+<li>Clone your fork using git<ul>
+<li>Generic format is: <code>git clone hg::$URL</code></li>
+<li>So for my fork of <strong>astroid</strong>, the command looks like: <code>git clone hg::ssh://hg@bitbucket.org/crobinso/astroid</code></li>
+</ul>
+</li>
+<li>Create a git branch, the name must start with 'branches/' to make mercurial happy when we eventually push things. So something like: <code>git checkout -b branches/myfix</code></code></li>
+<li>Make your changes in the branch</li>
+<li>Push the branch to your repo: <code>git push origin branches/myfix</code></li>
+<li>Use the bitbucket web UI to submit a pull request.</li>
+<li>That's it.</li>
+</ul>
+<p>Though I haven't figured out how to update a pull request... instead I've resorted to closing the first request, creating a new branch on my fork, and submitting a brand new pull request. There's probably some nicer automagic way but I haven't figured it out.</p>
+<p>(Hopefully in the near future more of the python ecosystem will <a href="http://lwn.net/Articles/623905/">move to git</a>.)</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>

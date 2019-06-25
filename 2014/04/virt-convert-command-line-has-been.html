@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>virt-convert command line has been reworked - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">virt-convert command line has been reworked</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2014-04-22T10:00:00-04:00" itemprop="datePublished">Tue 22 April 2014
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a><a href="https://blog2.wikichoon.com/tag/virt.html">virt </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p>One of the changes we made with <a href="http://blog.wikichoon.com/2014/02/virt-manager-100-released.html">virt-manager 1.0</a> was a large reworking of the virt-convert command line interface.</p>
+<p>virt-convert started life as a tool for converting back and forth between different VM configuration formats. Originally it was just between vmx and virt-image(5), but it eventually grew ovf input support. However, for the common usage of trying to convert a vmx/ovf appliance into a libvirt guest, this involved an inconvenient two step process:</p>
+<ul>
+<li>Convert to virt-image(5) with virt-convert</li>
+<li>Convert to a running libvirt guest with virt-image(1)</li>
+</ul>
+<p>Well, since virt-image didn't really have any users, it's <a href="http://blog.wikichoon.com/2014/04/deprecating-little-used-tool-virt-image1.html">planned for removal</a>. So we took the opportunity to improve virt-convert in the process. Running virt-convert is now as simple as:</p>
+<p><code>virt-convert fedora18.ova</code></p>
+<p>or</p>
+<p><code>virt-convert centos6.tar.gz</code></p>
+<p>And a we convert directly to libvirt XML and launch the guest. Standard libvirt options are allowed, like --connect for specifying the libvirt driver.</p>
+<p>The tool hasn't been heavily used and there's definitely still a lot of details we are missing, so if you hit any issues please <a href="http://virt-manager.org/bugs/">file a bug report.</a></p>
+<p>(Long term it sounds like gnome-boxes may grow a similar feature as mentioned <a href="http://zee-nix.blogspot.com/2014/03/boxes-312.html">over here</a>, so maybe virt-convert isn't long for this world since there will likely be a command line interface for it as well)</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>

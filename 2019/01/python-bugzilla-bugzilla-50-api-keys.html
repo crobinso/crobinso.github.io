@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>python-bugzilla + bugzilla 5.0 API keys - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">python-bugzilla + bugzilla 5.0 API keys</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-01-09T17:58:00-05:00" itemprop="datePublished">Wed 09 January 2019
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p>For many uses of /usr/bin/bugzilla and python-bugzilla, it's necessary to actually be logged in to a bugzilla server. Creating bugs, editing bugs, querying private data, etc.</p>
+<p>Up until now anyone that's used the command line tool has periodically had to do a 'bugzilla login' to refresh their authentication cache. In older bugzilla versions this was an HTTP cookie, more recently it's a bugzilla API token. Generally 'login' calls were needed infrequently on a single machine as tokens would remain valid for a long time.</p>
+<p>Recently, bugzilla.redhat.com received a big update to bugzilla 5.0. However with that update it seems like API tokens now expire after a week, which has necessitated lots more 'bugzilla login' calls than I'm used to.</p>
+<p>Thankfully with bugzilla 5.0 and later there's a better option: API keys. Here's how to to use them transparently with /usr/bin/bugzilla and all python-bugzilla library usage. Here's steps for enabling API keys with bugzilla.redhat.com, but the same process should roughly apply to other bugzilla instances too.</p>
+<p>Login to the bugzilla web UI, click your email, select Preferences, select API Keys. Generate an API key with an optional comment like 'python-bugzilla'. Afterwards the screen will look something like this:</p>
+<p><a href="https://3.bp.blogspot.com/-fi-nFEuW71o/XDZ7h-5oIWI/AAAAAAAAC4g/3jiO8m8nZN83chbw4-Wa9PHUjZvebEHCACLcBGAs/s1600/bugzilla-apikey.png"><img alt="" height="384" src="https://3.bp.blogspot.com/-fi-nFEuW71o/XDZ7h-5oIWI/AAAAAAAAC4g/3jiO8m8nZN83chbw4-Wa9PHUjZvebEHCACLcBGAs/s640/bugzilla-apikey.png" width="640"></a></p>
+<p>MY-EXAMPLE-API-KEY is not my actual key, I just replaced it for demo purposes. The actual key is a long string of characters and numbers. Copy that string value and write a bugzillarc file like this:</p>
+<div class="highlight"><pre><span></span><span class="na">$ cat ~/.config/python-bugzilla/bugzillarc</span>
+<span class="k">[bugzilla.redhat.com]</span>
+<span class="na">api_key</span><span class="o">=</span><span class="s">MY-EXAMPLE-API-KEY</span>
+</pre></div>
+
+
+<p>That's it, /usr/bin/bugzilla and python-bugzilla using tools should pick it up automagically. Note, API keys are as good as passwords in certain ways, so treat it with the same secrecy you would treat a password.</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Host 'Network Interfaces' panel removed from virt-manager - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">Host 'Network Interfaces' panel removed from virt-manager</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-04-09T14:01:00-04:00" itemprop="datePublished">Tue 09 April 2019
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a><a href="https://blog2.wikichoon.com/tag/virt.html">virt </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p>I released <a href="https://www.redhat.com/archives/virt-tools-list/2018-October/msg00087.html">virt-manager 2.0.0</a> in October 2018. Since the release contained the full port to python3, it seemed like a good opportunity to drop some baggage from the app.</p>
+<p>The biggest piece we removed was the UI for managing host network interfaces. This is the Connection Details->Network Interfaces panel, and the 'New Interface' wizard for defining host network definitions for things like bridges, bonds, and vlan devices. The main screen of the old UI looked like this:</p>
+<p><a href="https://2.bp.blogspot.com/-z9wAKvWEkck/XKvexfuWBqI/AAAAAAAAC5w/4j3bap-0-7cQxeMQ9bhQl5a-969EK4kpACLcBGAs/s1600/Screenshot%2Bfrom%2B2019-04-08%2B19-47-21.png"><img alt="" height="280" src="https://2.bp.blogspot.com/-z9wAKvWEkck/XKvexfuWBqI/AAAAAAAAC5w/4j3bap-0-7cQxeMQ9bhQl5a-969EK4kpACLcBGAs/s400/Screenshot%2Bfrom%2B2019-04-08%2B19-47-21.png" width="400"></a></p>
+<p>Behind the scenes, this UI was using libvirt's Interface APIs, which also power the 'virsh iface-*' commands. These APIs are little more than a wrapper around the <a href="https://pagure.io/netcf">netcf</a> library.</p>
+<p>netcf aimed to be a linux distro independent API for network device configuration. On Red Hat distros this meant turning the API's XML format into an /etc/sysconfig/network script. There were even pie-in-the-sky ideas about NetworkManager one day using netcf.</p>
+<p>In practice though the library never really took off. It was years before a debian backend showed up, contributed by a Red Hatter in the hope of increasing library uptake, though it didn't seem to help. netcf basically only existed to serve the libvirt Interface APIs, yet those APIs were never really used by any major libvirt consuming app, besides virt-manager. And in virt-manager's case it was largely just slapping some UI over the XML format and lifecycle operations.</p>
+<p>For virt-manager's usecases we hoped that netcf would make it trivial to bridge the host's network interface, which when used with VMs would give them first class IP addresses on the host network setup, not NAT like the 'default' virtual network. Unfortunately though the UI would create the ifcfg files well enough, behind the scenes nothing played well with NetworkManager for years and years. The standard suggestion for was to disable NetworkManager if you wanted to bridge your host NIC. Not very user friendly. Some people did manage to use the UI to that effect but it was never a trivial process.</p>
+<p>Nowadays NetworkManager can handle bridging natively and is much more powerful than what virt-manager/libvirt/netcf provide. The virt-manager UI was more likely to shoot you in the foot than make things simple. And it had become increasingly clear that virt-manager was not the place to maintain host network config UI.</p>
+<p>So we made the decision to drop all this from virt-manager in 2.0.0. netcf and the libvirt interface APIs still exist. If you're interested in some more history on the interface API/netcf difficulties, check out <a href="https://www.redhat.com/archives/virt-tools-list/2018-October/msg00049.html">Laine's email</a> to virt-tools-list.</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>

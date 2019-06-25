@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>pylint in Fedora 20 supports gobject introspection - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">pylint in Fedora 20 supports gobject introspection</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2014-04-08T10:00:00-04:00" itemprop="datePublished">Tue 08 April 2014
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a><a href="https://blog2.wikichoon.com/tag/virt.html">virt </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p><a href="https://wiki.gnome.org/GObjectIntrospection">GObject introspection</a> is the magical plumbing that enables building multiple language bindings for a GObject-based library using not much more than API documentation. This is used by <a href="https://wiki.gnome.org/PyGObject">PyGObject</a> to give us python access to gtk3, gdk, glib, etc. Pretty sweet.</p>
+<p>Unfortunately the automagic nature of this confused <a href="http://www.pylint.org/">pylint</a>, claiming your 'from gi.repository import Gtk' import didn't exist, and losing many of its nice features when interacting with objects provided by introspection derived bindings.</p>
+<p>I love pylint and it's a critical part of my python development workflow. So last year I decided to do my part and submit a patch to add some <a href="https://bitbucket.org/logilab/pylint-brain/issue/1/patch-pylint-brain-plugin-for-gobject">gobject introspection knowledge to pylint</a>.</p>
+<p>It works by actually importing the module (like 'Gtk' above), inspecting all its classes and functions, and building stub code that pylint can analyze. It's not perfect, but it will catch things like misspelled method names. (Apparently newer python-astroid has some infrastructure to <a href="https://bitbucket.org/logilab/pylint-brain/issue/4/py2gi-rewrite-using-the-living-object">inspect living objects</a>, so likely the plugin will use that one day).</p>
+<p>This support was released in python-astroid-1.0.1, which hit Fedora 20 at the beginning of March. Unfortunately a <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1079643">a bug</a> was causing a bunch of false positives with gobject-introspection, but that should be fixed with python-astroid-1.0.1-3 heading to F20.</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>

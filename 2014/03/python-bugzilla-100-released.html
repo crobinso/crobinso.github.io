@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>python-bugzilla 1.0.0 released - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">python-bugzilla 1.0.0 released</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2014-03-26T08:10:00-04:00" itemprop="datePublished">Wed 26 March 2014
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p>I released <a href="https://lists.fedorahosted.org/pipermail/python-bugzilla/2014-March/000246.html">python-bugzilla 1.0.0</a> yesterday. Since <a href="https://github.com/abn">Arun</a> led the charge to get python 3 support merged, it seemed like as good a time as any to go 1.0 :)</p>
+<p>python-bugzilla provides the /usr/bin/bugzilla command line tool that is heavily used in Fedora and internally at Red Hat. The library itself is used by parts of Fedora infrastructure like pkgdb and bodhi.</p>
+<p>This major changes in this release:</p>
+<ul>
+<li>Python 3 support (Arun Babu Neelicattu)</li>
+<li>Port to python-requests (Arun Babu Neelicattu)</li>
+<li>bugzilla: new: Add --keywords, --assigned_to, --qa_contact (Lon
+  Hohberger)</li>
+<li>bugzilla: query: Add --quicksearch, --savedsearch</li>
+<li>bugzilla: query: Support saved searches with --from-url</li>
+<li>bugzilla: --sub-component support for all relevant commands</li>
+</ul>
+<p>The sub component stuff is a recent bugzilla.redhat.com extension that hasn't been used much yet. I believe the next bugzilla.redhat.com update will add sub components for the Fedora kernel package, so bugs can be assigned to things like 'Kernel->USB', 'Kernel->KVM", etc. Quite helpful for complicated packages.</p>
+<p>But I don't know if it's going to be opened up as an option for any Fedora package, I guess we'll just have to wait and see. I assume there will be an announcement about it at some point.</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>

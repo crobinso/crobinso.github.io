@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Snapshot support in virt-manager - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">Snapshot support in virt-manager</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2014-03-17T14:05:00-04:00" itemprop="datePublished">Mon 17 March 2014
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a><a href="https://blog2.wikichoon.com/tag/virt.html">virt </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p>The biggest feature we added in <a href="http://blog.wikichoon.com/2014/02/virt-manager-100-released.html">virt-manager 1.0</a> is VM snapshot support. Users have been asking us to expose this in the UI for quite a long time. In this post I'll walk you through the new UI.</p>
+<p>Let's start with some use cases for VM snapshots:</p>
+<ol>
+<li>I want to test some changes to my VM, and either throw them away, or use them permanently.</li>
+<li>I want to have a single Fedora 20 VM, but multiple snapshots with mutually exclusive OS changes in each. One snapshot might have F20 libvirt installed, but another snapshot will have libvirt.git installed. I want to switch between them for development, bug triage, etc.</li>
+<li>I encountered a bug in the VM. I want to save the running state of the VM incase developers want further debugging information, but I also want to restart the VM and continue to use it in the meantime.</li>
+</ol>
+<p>The libvirt APIs support two different types of snapshots with qemu/kvm.</p>
+<h4>Internal snapshots</h4>
+<p>Internal snapshots are the snapshots that QEMU has supported for a long time. Libvirt refers to them as 'internal' because all the data is stored as part of the qcow2 disk image: if you have a VM with a single qcow2 disk image and take 10 snapshots, you still have only one file to manage. This is the default snapshot mode if using the 'virsh snapshot-*' commands.</p>
+<p>These snapshots can be combine disk and VM memory state for 'checkpointing', so you can jump back and forth between a saved running VM state. A snapshot of an offline VM can also be performed, and only the disk contents will be saved.</p>
+<p>Cons:</p>
+<ul>
+<li>Only works with qcow2 disk images. Since virt-manager has historically used raw images, pre-existing VMs may not be able to work with this type.</li>
+<li>They are non-live, meaning the VM is paused while all the state is saved. For end users this likely isn't a problem, but if you are managing a public server, minimizing downtime is essential.</li>
+<li>Historically they were quite slow, but this has improved quite a bit with QEMU 1.6+</li>
+</ul>
+<h4>External snapshots</h4>
+<p>External snapshots are about safely creating <a href="http://wiki.qemu.org/Documentation/CreateSnapshot">copy-on-write overlay files</a> for a running VM's disk images. QEMU has supported copy-on-write overlay files for a long time, but the ability to create them for a running VM is only a couple years old. They are called 'external' because every snapshot creates a new overlay file.</p>
+<p>While the overlay files have to be qcow2, these snapshots will work with any base disk image. They can also be performed with very little VM downtime, at least under a second. The external nature also allows different use cases like live backup: create a snapshot, back up the original backing image, when backup completes, merge the overlay file changes back into the backing image.</p>
+<p>However that's mostly where the benefits end. Compared to internal snapshots, which are an end to end solution with all the complexity handled in QEMU, external snapshots are just a building block for handling the use cases I described above... and the many of the pieces haven't been filled in yet. Libvirt still needs <a href="http://wiki.libvirt.org/page/I_created_an_external_snapshot,_but_libvirt_won%27t_let_me_delete_or_revert_to_it">a lot of work</a> to reach feature parity with what internal snapshots already provide. This is understandable, as the main driver for external snapshot support was for features like live backup that internal snapshots weren't suited for. Once that point was reached, there hasn't been much of a good reason to do the difficult work of filling in the remaining support when internal snapshots already fit the bill.</p>
+<h4>virt-manager support</h4>
+<p>Understandably we decided to go with internal snapshots in virt-manager's UI. To facilitate this, we've changed the default disk image for new qemu/kvm VMs to <strong>qcow2</strong>.</p>
+<p>The snapshot UI is reachable via the VM details toolbar and menu:</p>
+<p><a href="http://4.bp.blogspot.com/-NHIb6TbX5MU/UyXr45_n3mI/AAAAAAAAADE/AO3vok9OpTM/s1600/Screenshot+from+2014-03-16+14:21:49.png"><img alt="" height="158" src="http://4.bp.blogspot.com/-NHIb6TbX5MU/UyXr45_n3mI/AAAAAAAAADE/AO3vok9OpTM/s1600/Screenshot+from+2014-03-16+14:21:49.png" width="320"></a></p>
+<p>That button will be disabled with an informative tool tip if snapshots aren't supported, such as if the the disk image isn't qcow2, or using a libvirt driver like xen which doesn't have snapshot support wired up.</p>
+<p>Here's what the main screen looks like:</p>
+<p><a href="http://2.bp.blogspot.com/-5vmjChe5sHQ/UyXv-N5iDmI/AAAAAAAAADQ/mWa1zIPIFag/s1600/Screenshot+from+2014-03-16+14:39:18.png"><img alt="" height="627" src="http://2.bp.blogspot.com/-5vmjChe5sHQ/UyXv-N5iDmI/AAAAAAAAADQ/mWa1zIPIFag/s1600/Screenshot+from+2014-03-16+14:39:18.png" width="640"></a></p>
+<p>It's pretty straight forward. The column on the left lists all the snapshots. The 'VM State' means <em>the state the VM was in when the snapshot was taken</em>. So running/reverting to a 'Running' snapshot means the VM will end up in a running state, a 'Shutoff' snapshot will end up with the VM shutoff, etc.</p>
+<p>The check mark indicates the <em>last applied snapshot</em>, which could be the most recently created snapshot or the most recently run/reverted snapshot. The VM disk contents are basically 'the snapshot contents' + 'whatever changes I've made since then'. It's just an indicator of where you are.</p>
+<p>Internal snapshots are all independent of one another. You can take 5 successive snapshots, delete 2-4, and snapshot 1 and 5 will still be completely independent. Any notion of a snapshot hierarchy is really just metadata, and we decided not to expose it in the UI. That may <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1065077">change in the future</a>.</p>
+<p>Run/revert to a snapshot with the play button along the bottom. Create a new snapshot by hitting the + button. The wizard is pretty simple:</p>
+<p><a href="http://1.bp.blogspot.com/-h45EjtteJJk/UyXx3OybSrI/AAAAAAAAADc/QNVyzJAADJo/s1600/Screenshot+from+2014-03-16+14:47:26.png"><img alt="" height="400" src="http://1.bp.blogspot.com/-h45EjtteJJk/UyXx3OybSrI/AAAAAAAAADc/QNVyzJAADJo/s1600/Screenshot+from+2014-03-16+14:47:26.png" width="359"></a></p>
+<p>That's about it. Give it a whirl in virt-manager 1.0 and <a href="http://virt-manager.org/bugs/">file a bug</a> if you hit any issues.</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>

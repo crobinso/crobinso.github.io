@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Extending the virt-xml command line - Cole's dev log</title>
+        <meta charset="utf-8" />
+        <link href="https://blog2.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog2.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://blog2.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole's dev log Full Atom Feed" />
+    </head>
+
+    <body id="index" class="archive">
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="https://blog2.wikichoon.com">Cole's dev log</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="https://blog2.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog2.wikichoon.com/archives.html">Archives</a>
+                <!-- -->
+                </div></nav>
+             </header>
+<main id="content" class="page-content">
+
+  <header>
+    <h2 class="post-title">Extending the virt-xml command line</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2014-03-10T18:03:00-04:00" itemprop="datePublished">Mon 10 March 2014
+      </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
+      </span> • </a> Tags: <a href="https://blog2.wikichoon.com/tag/fedora.html">fedora </a><a href="https://blog2.wikichoon.com/tag/virt.html">virt </a>    </p>
+  </header>
+
+  <div class="post-content">
+    <p>Edit May 2019: This tutorial is out of date. A modern version is on the virt-manager github wiki: <a href="https://github.com/virt-manager/virt-manager/wiki/Extending-the-command-line">https://github.com/virt-manager/virt-manager/wiki/Extending-the-command-line</a></p>
+<p>As <a href="http://blog.wikichoon.com/2014/03/virt-xml-edit-libvirt-xml-from-command.html">previously explained</a>, virt-manager 1.0.0 shipped with a tool called virt-xml, which enables editing libvirt XML from the command line in one shot. This post will walk through an example of patching virt-xml to support a new libvirt XML value.</p>
+<p>A bit of background: libvirt VM configuration is in XML format. It <a href="http://libvirt.org/formatdomain.html">has quite an extensive XML schema</a>. For QEMU/KVM guests, most of the XML attributes map to qemu command line values. QEMU is always adding new emulated hardware and new features, which in turn require the XML schema to be extended. Example: this <a href="http://libvirt.org/git/?p=libvirt.git;a=commit;h=08d07e5fd8a4c072bf040b3949bbd969f98d1081">recent libvirt change</a> to allow turning off Spice drag + drop support with a <code>&lt;filetransfer enable='no'/\&gt;</code> option.</p>
+<p>For this example, we are going to expose a different property: defaultMode, also part of the graphics device. defaultMode can be used to tell qemu to open all spice channels in secure TLS mode. But for the purpose of this example, what defaultMode actually does and how it works isn't important. For virt-xml, the only important bit is getting the value for the command line, writing it correctly as XML, and unit testing the XML generation.</p>
+<p>You can see the completed virt-xml git commit <a href="https://github.com/virt-manager/virt-manager/commit/b4e4f683761c55259bd5ed4b3c5549568d6147bb">over here</a>.</p>
+<p><strong>Step 0: Run the test suite</strong></p>
+<p>The virt-manager test suite aims to always 100% pass, but depending on your host libvirt version things can occasionally be broken. Run 'python setup.py test' and note if any tests fail. The important bit here is that after we make all the following changes, the test suite shouldn't regress at all.</p>
+<p><strong>Step 1: XML generation</strong></p>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/virtinst/devicegraphics.py b/virtinst/devicegraphics.py</span>
+<span class="gh">index 37f268a..a87b71c 100644</span>
+<span class="gd">--- a/virtinst/devicegraphics.py</span>
+<span class="gi">+++ b/virtinst/devicegraphics.py</span>
+<span class="gu">@@ -204,6 +204,7 @@ class VirtualGraphics(VirtualDevice):</span>
+   passwdValidTo = XMLProperty(&quot;./@passwdValidTo&quot;)
+   socket = XMLProperty(&quot;./@socket&quot;)
+   connected = XMLProperty(&quot;./@connected&quot;)
+<span class="gi">+  defaultMode = XMLProperty(&quot;./@defaultMode&quot;)</span>
+
+   listens = XMLChildProperty(_GraphicsListen)
+   def remove_listen(self, obj):
+</pre></div>
+
+
+<p>Starting with <a href="https://github.com/virt-manager/virt-manager">virt-manager git</a>, first we extend the internal API to map a python class property to its associated XML value.</p>
+<p>The virtinst/ directory contains the internal XML building API used by all the tools shipped with virt-manager. There's generally a single file and class per XML object, examples</p>
+<ul>
+<li>devicegraphics.py: <code>&lt;graphics\&gt;</code> device</li>
+<li>cpu.py: <code>&lt;cpu\&gt;</code> block</li>
+<li>osxml.py: <code>&lt;os\&gt;</code> block</li>
+<li>And so on</li>
+</ul>
+<p>If you aren't sure what file or class you need to alter, try grepping for a property you know that virt-install already supports. So, for example, using <a href="http://blog.wikichoon.com/2014/02/virt-install-command-line-introspection.html">virt-install --graphics=?</a> I see that there's a property named passwdValidTo. Doing 'git grep passwdValidTo' will point to virtinst/devicegraphics.py</p>
+<p>'XMLProperty' is some custom glue that maps a python class property to an XML value, for both reading and writing. The value passed to XMLProperty is an XML xpath. If you don't know how xpaths work, google around, or try to find an existing example in the virtinst code.</p>
+<p>Notice that this doesn't do much else, like validate that the value passed to defaultMode is actually valid. The general rule is to leave this up to libvirt to complain.</p>
+<p><strong>Step 2: Command line handling</strong></p>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/virtinst/cli.py b/virtinst/cli.py</span>
+<span class="gh">index 826663a..41d6a8c 100644</span>
+<span class="gd">--- a/virtinst/cli.py</span>
+<span class="gi">+++ b/virtinst/cli.py</span>
+<span class="gu">@@ -1810,6 +1810,7 @@ class ParserGraphics(VirtCLIParser):</span>
+     self.set_param(&quot;passwd&quot;, &quot;password&quot;)
+     self.set_param(&quot;passwdValidTo&quot;, &quot;passwordvalidto&quot;)
+     self.set_param(&quot;connected&quot;, &quot;connected&quot;)
+<span class="gi">+    self.set_param(&quot;defaultMode&quot;, &quot;defaultMode&quot;)</span>
+
+   def _parse(self, opts, inst):
+     if opts.fullopts == &quot;none&quot;:
+</pre></div>
+
+
+<p>The next step is to set up command line handling. In this case we are adding a sub option to the --graphics command. Open up virtinst/cli.py and search for '--graphics', you'll find a comment with a ParserGraphics class defined after it. That's where we plug in new sub options.</p>
+<p>The 'self.set_param' registers the sub option: first argument is the name on the cli, second argument is the property name we defined above. In this case they are the same.</p>
+<p>Some options do extra validation or need to do special handling. If you need extra functionality, look at examples that pass setter_cb to set_param.</p>
+<p>After this bit is applied, you'll see defaultMode appear in the --graphics=? output, and everything will work as expected. But we need to add a unit test to validate the XML generation.</p>
+<p>An easy way to test that this is working is with a command line like:</p>
+<div class="highlight"><pre><span></span>./virt-install --connect test:///default --name foo --ram 64
+              --nodisks --boot network --print-xml
+              --graphics spice,defaultMode=secure
+</pre></div>
+
+
+<p>That will use libvirt's 'test' driver, which is made for unit testing, and doesn't affect the host at all. The --print-xml command will output the new XML. Verify that your new command line option works as expected before continuing. See the <a href="https://github.com/virt-manager/virt-manager/blob/master/HACKING">HACKING</a> file for additional tips for using the test driver.</p>
+<p><strong>Step 3: Unit test XML generation</strong></p>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/tests/xmlparse.py b/tests/xmlparse.py</span>
+<span class="gh">index a2448d2..397da45 100644</span>
+<span class="gd">--- a/tests/xmlparse.py</span>
+<span class="gi">+++ b/tests/xmlparse.py</span>
+<span class="gu">@@ -559,6 +559,7 @@ class XMLParseTest(unittest.TestCase):</span>
+     check(&quot;channel_cursor_mode&quot;, &quot;any&quot;, &quot;any&quot;)
+     check(&quot;channel_playback_mode&quot;, &quot;any&quot;, &quot;insecure&quot;)
+     check(&quot;passwdValidTo&quot;, &quot;2010-04-09T15:51:00&quot;, &quot;2011-01-07T19:08:00&quot;)
+<span class="gi">+    check(&quot;defaultMode&quot;, None, &quot;secure&quot;)</span>
+
+     self._alter_compare(guest.get_xml_config(), outfile)
+</pre></div>
+
+
+<p>tests/xmlparse.py tests reading and writing, so it will test the change we made in virtinst/devicegraphics.py. Before you make any tests/, run 'python setup.py test --testfile xmlparse.py', you should see a new error: this is because xmlparse.py will emit a test failure if a new XML property in virtinst/ that isn't explicitly tested!</p>
+<p>Similar to how you found what virtinst/ file to edit by grepping for a known graphics property like passwdValidTo, do the same in xmlparse.py to find the pre-existing graphics test function. The check() invocation is a small wrapper for setting and reading a value: the first argument is the python property name we are poking, the second argument is what the initial value should be, and the final argument is the new value we are setting.</p>
+<p>The initial XML comes from tests/xmlparse-xml/*, and is initialized at the start of the function. But in our case, we don't need to manually alter that. So make the change, and rerun 'python setup.py test --testfile xmlparse.py' and...</p>
+<p>Things broke! That's because the generated XML output changed, and contains our new defaultMode value. So we need to update the known-good XML files we compare against. The easiest way to do that is to run 'python setup.py test --testfile xmlparse.py --regenerate-output'. Run 'git diff' afterwards to ensure that only the graphics file was changed.</p>
+<p>Finally, run 'python setup.py test' and ensure the rest of the test suite doesn't regress compared to the initial run you did in Step 0.</p>
+<p>For cases where you added non-trivial command line handling, take a look at tests/clitest.py, where we run a battery of command line parsing tests. You likely want to extend this to verify your command line works as expected.</p>
+<p>Also, if you want to add an entirely new command line option that maps to an XML block, <a href="https://github.com/virt-manager/virt-manager/commit/94744bce20ec88a7a83c5e7af23dac5d5b0fae10">this commit adding the --memtune option</a> is a good reference.</p>
+<p><strong>Step 4) Documentation?</strong></p>
+<p>For each new option sub property, the general rule is we don't need to explicitly list it in the man page or virt-install/virt-xml --help output. The idea is that command line introspection and libvirt XML documentation should be sufficient. However, if your command line option has some special behavior, or is particularly important, consider extending man/virt-install.pod.</p>
+<p><strong>Step 5) Submit the patch!</strong></p>
+<p>So your patch is done! git commit -a &amp;&amp; git send-email -1 --to virt-tools-list@redhat.com or simply drop it in a <a href="http://virt-manager.org/bugs/">bug report</a>. If you have any questions or need any assitance, <a href="http://virt-manager.org/communicate/">drop us a line</a>.</p>
+<p>(update 2015-09-04: Point git links to github)</p>
+  </div>
+
+</main>
+
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">Cole's dev log</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog2.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="https://blog2.wikichoon.com/feeds/all.atom.xml">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+        </div><!-- container -->
+    </body>
+</html>
