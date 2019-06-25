@@ -11,7 +11,7 @@ TIMEZONE = 'America/New_York'
 
 DEFAULT_LANG = 'en'
 
-THEME = "/home/crobinso/pelican-themes/simple-bootstrap"
+THEME = "theme/simple-bootstrap"
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
