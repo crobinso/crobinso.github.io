@@ -1,1 +1,16 @@
 /* Cole's custom css overrides on top of minima */
+:root {
+  /* A darker gray background */
+  --color-default-back: #f0f0f0;
+
+  /* Deepen the greys to match */
+  --color-grey: #626262;
+  --color-grey-light: #c8c8c8;
+  --color-grey-dark: #222222;
+
+  /* Purple tones for links, inspired from here: https://colorhunt.co/palette/152058 */
+  --color-link-text: #614ad3;
+  /* Make the link text a bit darker */
+  --color-link-text: #5e47d0;
+  --color-link-visited-text: #2d248a;
+}
