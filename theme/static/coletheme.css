@@ -1,0 +1,6 @@
+/* Cole's custom css overrides on top of minima + simple-bootstrap */
+
+/* Have index article entries spaced similar to minima */
+.hentry{
+    margin-bottom:30px;
+}
