@@ -40,14 +40,26 @@
              </header>
             {% block content %}
             {% endblock %}
-            <footer id="contentinfo" class="footer">
-                    <nav class="pull-right bottom-nav">
-                        <a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">RSS</a>
-                    </nav>
-                    <address id="about" class="vcard body">
-                    &copy; <a href="{{SITEURL}}">{{SITENAME}}</a> Proudly powered by <a href="http://getpelican.com/">Pelican</a>
-                    </address><!-- /#about -->
-            </footer><!-- /#contentinfo -->
+
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <h2 class="footer-heading">{{ SITENAME }}</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+            <li class="p-name">{{ AUTHOR }} </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="{{ SITEURL }}/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="{{ SITEURL }}/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="{{ SITEURL }}/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3" align="center">
+        <a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}">RSS</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
         </div><!-- container -->
                 {% include 'analytics.html' %}
     </body>
