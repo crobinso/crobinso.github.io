@@ -20,5 +20,5 @@ TAG_FEED_ATOM = 'feeds/{slug}.atom.xml'
 
 DEFAULT_PAGINATION = False
 
-# Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+ARTICLE_URL = "{date:%Y}/{date:%m}/{slug}.html"
+ARTICLE_SAVE_AS = "{date:%Y}/{date:%m}/{slug}.html"
