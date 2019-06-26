@@ -3,32 +3,20 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Cole Robinson'
 SITENAME = "Cole's dev log"
-SITEURL = ''
-
-PATH = 'content'
-
+SITEURL = 'http://localhost:8000'
 TIMEZONE = 'America/New_York'
-
 DEFAULT_LANG = 'en'
 
+PATH = 'content'
 THEME = "theme"
 
-# Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
+# We don't use any of these feeds
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
-
-# Blogroll
-LINKS = (
-    # ('Pelican', 'http://getpelican.com/'),
-)
-
-# Social widget
-SOCIAL = (
-        ('github', 'https://github.com/crobinso'),
-)
+FEED_ALL_ATOM = 'feeds/all.atom.xml'
+TAG_FEED_ATOM = 'feeds/{slug}.atom.xml'
 
 DEFAULT_PAGINATION = False
 
