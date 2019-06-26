@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block navclass %}active{%endblock%}
 {% block content %}
-<section id="content" class="content">
+<main id="content" class="page-content">
 {% block content_title %}
 {% endblock %}
 
@@ -12,5 +12,5 @@
         </article>
 {% endfor %}
 {% include 'pagination.html' %}
-</section>
+</main>
 {% endblock content %}

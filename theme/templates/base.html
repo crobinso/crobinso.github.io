@@ -4,9 +4,7 @@
         {% block head %}
         <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
         <meta charset="utf-8" />
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" />
         <link href="{{ SITEURL }}/theme/minima-main.css" rel="stylesheet" />
-        <link href="{{ SITEURL }}/theme/simple-bootstrap.css" rel="stylesheet" />
         <link href="{{ SITEURL }}/theme/coletheme.css" rel="stylesheet" />
         {% if FAVICON %}
         <link rel="shortcut icon" href="{{ SITEURL }}/{{ FAVICON }}" type="image/x-icon" />
@@ -28,18 +26,18 @@
     </head>
 
     <body id="index" class="archive">
-        <div class="container">
-            <div class="header">
-                <ul class="nav nav-pills pull-right">
-                    <li class="{% block navclass %}{{ NAVCLASS }}{% endblock navclass %}"><a href="{{ SITEURL }}">Home</a></li>
-                {% for p in pages %}
+        <div class="wrapper">
+            <header class="site-header" role="banner">
+                <a class="site-title" href="{{ SITEURL }}">{{ SITENAME }}</a>
+                <nav class="site-nav">
+                <div class="trigger">
+                    <a class="page-link" href="{{ SITEURL }}">Home</a>
+                    <a class="page-link" href="{{ SITEURL }}/archives.html">Archives</a>
+                <!-- {% for p in pages %}
                     <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
-                {% endfor %}
-                    <li{% if author or tag %} class="active"{% endif %}{% block archclass %}{{ ARCHCLASS }}{% endblock archclass %}><a href="{{ SITEURL }}/archives.html">Archives</a></li>
-                </ul>
-                <h3 class="text-muted"><a href="{{ SITEURL }}">{{ SITENAME }}</a></h3>
-                                <h2 class="text-muted">{{ SITESUBTITLE }}</h2>
-             </div>
+                    {% endfor %}-->
+                </div></nav>
+             </header>
             {% block content %}
             {% endblock %}
             <footer id="contentinfo" class="footer">

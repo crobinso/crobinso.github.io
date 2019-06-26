@@ -1,1 +1,1 @@
-Cole's custom theme derived from [Pelican simple-bootstrap theme](https://github.com/getpelican/pelican-themes/tree/master/simple-bootstrap) and [Jeckyll minima](https://github.com/jekyll/minima)
+Cole's custom theme derived from [Pelican simple-bootstrap theme](https://github.com/getpelican/pelican-themes/tree/master/simple-bootstrap), but converted to not use bootstrap and only use [Jeckyll minima](https://github.com/jekyll/minima)
