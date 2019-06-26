@@ -8,9 +8,9 @@
         <link href="{{ SITEURL }}/theme/minima-main.css" rel="stylesheet" />
         <link href="{{ SITEURL }}/theme/simple-bootstrap.css" rel="stylesheet" />
         <link href="{{ SITEURL }}/theme/coletheme.css" rel="stylesheet" />
-	{% if FAVICON %}
-	<link rel="shortcut icon" href="{{ SITEURL }}/{{ FAVICON }}" type="image/x-icon" />
-	{% endif %}
+        {% if FAVICON %}
+        <link rel="shortcut icon" href="{{ SITEURL }}/{{ FAVICON }}" type="image/x-icon" />
+        {% endif %}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         {% if FEED_ALL_ATOM %}
         <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
@@ -50,7 +50,7 @@
                     <li{% if author or tag %} class="active"{% endif %}{% block archclass %}{{ ARCHCLASS }}{% endblock archclass %}><a href="{{ SITEURL }}/archives.html">Archives</a></li>
                 </ul>
                 <h3 class="text-muted"><a href="{{ SITEURL }}">{{ SITENAME }}</a></h3>
-				<h2 class="text-muted">{{ SITESUBTITLE }}</h2>
+                                <h2 class="text-muted">{{ SITESUBTITLE }}</h2>
              </div>
             {% block content %}
             {% endblock %}
@@ -63,6 +63,6 @@
                     </address><!-- /#about -->
             </footer><!-- /#contentinfo -->
         </div><!-- container -->
-		{% include 'analytics.html' %}
+                {% include 'analytics.html' %}
     </body>
 </html>
