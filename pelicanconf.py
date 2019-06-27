@@ -15,6 +15,8 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
+
+FEED_MAX_ITEMS = 10
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 TAG_FEED_ATOM = 'feeds/{slug}.atom.xml'
 
