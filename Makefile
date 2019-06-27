@@ -9,7 +9,7 @@ CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
 
 GITHUB_PAGES_BRANCH=master
-
+CNAME = "blog2.wikichoon.com"
 
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)
@@ -69,7 +69,11 @@ publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
 github: publish
-	ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
+	ghp-import \
+		--message="Generate Pelican site" \
+		--branch=$(GITHUB_PAGES_BRANCH) \
+		--cname=$(CNAME) \
+		$(OUTPUTDIR)
 	git push origin $(GITHUB_PAGES_BRANCH)
 
 
