@@ -5,7 +5,7 @@ Tags: fedora, virt
 Slug: virt-xml-edit-libvirt-xml-from-command
 Status: published
 
-We shipped a new tool with [virt-manager 1.0.0](http://blog.wikichoon.com/2014/02/virt-manager-100-released.html) called [virt-xml](https://www.redhat.com/archives/virt-tools-list/2014-January/msg00179.html). virt-xml uses virt-install's command line options to allow building and editing libvirt domain XML. A few basic examples:
+We shipped a new tool with [virt-manager 1.0.0](https://blog.wikichoon.com/2014/02/virt-manager-100-released.html) called [virt-xml](https://www.redhat.com/archives/virt-tools-list/2014-January/msg00179.html). virt-xml uses virt-install's command line options to allow building and editing libvirt domain XML. A few basic examples:
 
 Change the `<description\>` of domain 'example':
 
@@ -48,4 +48,4 @@ And that's the problem: over time these types of requests put pressure on virt-m
 
 So here's virt-xml, that allows us to easily make these types of XML changes with a single command. This takes the pressure off virt-manager, and provides a friendly middle ground between the GUI and 'virsh edit'. It also greatly simplifies documentation and wiki pages (like fedora test day test cases).
 
-The CLI API surface is huge compared to virt-manager's UI. There's no reason that virt-xml can't expand to support every XML property exposed by libvirt. And we've worked on making it trivially easy to to extend the tool to handle new XML options: in many cases, it's only [**3 lines of code**](http://blog.wikichoon.com/2014/03/extending-virt-xml-command-line.html) to add a new --disk/--network/... sub option, including unit testing, [command line introspection](http://blog.wikichoon.com/2014/02/virt-install-command-line-introspection.html), and virt-install support.
+The CLI API surface is huge compared to virt-manager's UI. There's no reason that virt-xml can't expand to support every XML property exposed by libvirt. And we've worked on making it trivially easy to to extend the tool to handle new XML options: in many cases, it's only [**3 lines of code**](https://blog.wikichoon.com/2014/03/extending-virt-xml-command-line.html) to add a new --disk/--network/... sub option, including unit testing, [command line introspection](https://blog.wikichoon.com/2014/02/virt-install-command-line-introspection.html), and virt-install support.

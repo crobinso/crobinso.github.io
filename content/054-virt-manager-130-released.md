@@ -9,7 +9,7 @@ Last night I released [virt-manager-1.3.0](https://www.redhat.com/archives/virt-
 
 The highlights:
 
--   Git hosting moved to http://github.com/virt-manager/virt-manager
+-   Git hosting moved to https://github.com/virt-manager/virt-manager
 -   Switch translation infrastructure from transifex to fedora.zanata.org
 -   Add dogtail UI tests and infrastructure
 -   Improved support for s390x kvm (Kevin Zhao)

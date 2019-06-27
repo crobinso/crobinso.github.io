@@ -5,7 +5,7 @@ Tags: fedora, virt
 Slug: spice-usb-redirection-in-virt-manager
 Status: published
 
-A new feature we added in [virt-manager 1.0](http://blog.wikichoon.com/2014/02/virt-manager-100-released.html) is out of the box support for Spice USB redirection.
+A new feature we added in [virt-manager 1.0](https://blog.wikichoon.com/2014/02/virt-manager-100-released.html) is out of the box support for Spice USB redirection.
 
 When connected to a VM's graphical display, any USB device plugged in to your physical host will be automatically redirected to the VM. This is great for easily sharing a usb drive with your VM. Existing devices can also be manually attached via the VM window menu option 'Virtual Machine-\>Redirect USB Device'
 
@@ -21,4 +21,4 @@ All those bits should be fairly straight forward to do with the UI in virt-manag
 
 For more details, like how to do this using libvirt XML or the qemu command line, check the documentation over here:
 
-<http://people.freedesktop.org/~teuf/spice-doc/html/>
+<https://people.freedesktop.org/~teuf/spice-doc/html/>

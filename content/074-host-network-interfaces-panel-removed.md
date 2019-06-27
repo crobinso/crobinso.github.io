@@ -10,7 +10,7 @@ I released [virt-manager 2.0.0](https://www.redhat.com/archives/virt-tools-list/
 The biggest piece we removed was the UI for managing host network interfaces. This is the Connection Details-\>Network Interfaces panel, and the 'New Interface' wizard for defining host network definitions for things like bridges, bonds, and vlan devices. The main screen of the old UI looked like this:
 
 
-[![](https://2.bp.blogspot.com/-z9wAKvWEkck/XKvexfuWBqI/AAAAAAAAC5w/4j3bap-0-7cQxeMQ9bhQl5a-969EK4kpACLcBGAs/s400/Screenshot%2Bfrom%2B2019-04-08%2B19-47-21.png){width="400" height="280"}](https://2.bp.blogspot.com/-z9wAKvWEkck/XKvexfuWBqI/AAAAAAAAC5w/4j3bap-0-7cQxeMQ9bhQl5a-969EK4kpACLcBGAs/s1600/Screenshot%2Bfrom%2B2019-04-08%2B19-47-21.png)
+![Old host interfaces panel]({static}/images/074-host-network-interfaces-panel-removed-1.png){width="400" height="280"}
 
 
 Behind the scenes, this UI was using libvirt's Interface APIs, which also power the 'virsh iface-\*' commands. These APIs are little more than a wrapper around the [netcf](https://pagure.io/netcf) library.

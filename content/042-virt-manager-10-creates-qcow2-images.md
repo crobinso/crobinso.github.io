@@ -5,7 +5,7 @@ Tags: fedora, virt
 Slug: virt-manager-10-creates-qcow2-images
 Status: published
 
-One of the big features we added in virt-manager 1.0 was [snapshot support](http://blog.wikichoon.com/2014/03/snapshot-support-in-virt-manager.html). As part of this change, we switched to using the QCOW2 disk image format for new VMs. We also enable the [QCOW2 lazy\_refcounts](https://lists.gnu.org/archive/html/qemu-devel/2012-06/msg03827.html) feature that improves performance of some snapshot operations.
+One of the big features we added in virt-manager 1.0 was [snapshot support](https://blog.wikichoon.com/2014/03/snapshot-support-in-virt-manager.html). As part of this change, we switched to using the QCOW2 disk image format for new VMs. We also enable the [QCOW2 lazy\_refcounts](https://lists.gnu.org/archive/html/qemu-devel/2012-06/msg03827.html) feature that improves performance of some snapshot operations.
 
 However, not all versions of QEMU in the wild can handle lazy\_refcounts, and will refuse to use the disk image, particularly RHEL6 QEMU. So by default, a disk image from a VM created with Fedora 20 virt-manager will not run on RHEL6 QEMU, throwing an error like:
 

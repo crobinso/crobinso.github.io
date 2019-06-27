@@ -14,7 +14,7 @@ So, some screenshots!
 Page 1: VM Name and Install method
 
 
-[![](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg1-1.png)](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg1-1.png)
+(Image is gone)
 
 We scrapped the 'intro' page: I don't think anyone will miss it. Having the 'name' box occupy an entire page by itself was also a bit overkill, so we did away with that as well.
 
@@ -34,10 +34,7 @@ The one new piece here is the option to choose the libvirt connection to install
 Page 2: Install media info
 
 
-[![](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-local.png)](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-local.png)
-
-
-[![](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-url.png)](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-url.png)
+(Image is gone)
 
 This hasn't deviated much from the current options: the one difference is that the OS Type/Variant choice has been moved to these screens. This will allow us in the future to offer automatic distro detection based on the selected install media (we may have this for URL installs by the time the release goes out).
 
@@ -47,7 +44,7 @@ Since PXE installs require no extra input, the screen will only have the OS Type
 Page 3: CPU + Mem details
 
 
-[![](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg3-1.png)](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg3-1.png)
+(Image is gone)
 
 We dropped the max memory vs. default memory split that is in the existing wizard: it doesn't have much meaning the qemu/kvm world, and even for xen it isn't something that needs to be asked up front. The user can always change it later.
 
@@ -57,7 +54,7 @@ Also, rather than list tons of warning information about overcommitting vcpus, w
 Page 4: Storage
 
 
-[![](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg4-1.png)](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg4-1.png)
+(Image is gone)
 
 The main change here is that we removed the block device vs. file device dichotomy: we are pretty capable of making this distinction behind the scenes.
 
@@ -77,9 +74,7 @@ The one piece not shown here is the option to choose sparse Vs. non-sparse. We w
 Page 5: Summary and Advanced Options
 
 
-[![](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-1.png)](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-1.png)
-
-[![](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-2.png)](http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-2.png)
+(Image is gone)
 
 The summary section is pretty straight forward, no surprises here. The 'Advanced Options' section encompasses networking, hypervisor, and architecture options. The hypervisor and arch defaults were explained above.
 

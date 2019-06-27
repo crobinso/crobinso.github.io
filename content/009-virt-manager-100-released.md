@@ -13,17 +13,17 @@ virt-manager is a desktop application for managing KVM, Xen, and LXC virtualizat
 
 The release can be downloaded from:
 
-<http://virt-manager.org/download/>
+<https://virt-manager.org/download/>
 
 The direct download links are:
 
-<http://virt-manager.org/download/sources/virt-manager/virt-manager-1.0.0.tar.gz>
+<https://virt-manager.org/download/sources/virt-manager/virt-manager-1.0.0.tar.gz>
 
 This release includes:
 
 - virt-manager: Snapshot support
 - New tool virt-xml: Edit libvirt XML in one shot from the command line:
-<http://www.redhat.com/archives/libvir-list/2014-January/msg01226.html>
+<https://www.redhat.com/archives/libvir-list/2014-January/msg01226.html>
 - Improved defaults: qcow2, USB2, host CPU model, guest agent channel, ...
 - Introspect command line options like --disk=? or --network=help
 - The virt-image tool will be removed before the next release, speak up

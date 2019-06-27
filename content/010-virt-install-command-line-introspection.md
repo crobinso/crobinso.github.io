@@ -5,7 +5,7 @@ Tags: fedora
 Slug: virt-install-command-line-introspection
 Status: published
 
-A new feature shipped with [virt-manager 1.0.0](http://blog.wikichoon.com/2014/02/virt-manager-100-released.html) is simple command line introspection for virt-install and [virt-xml](https://www.redhat.com/archives/virt-tools-list/2014-January/msg00179.html).
+A new feature shipped with [virt-manager 1.0.0](https://blog.wikichoon.com/2014/02/virt-manager-100-released.html) is simple command line introspection for virt-install and [virt-xml](https://www.redhat.com/archives/virt-tools-list/2014-January/msg00179.html).
 
 Basically, any of the compound options like --disk or --graphics that take sub arguments of the form opt1=val1,opt2=val2,... will print all their sub arguments if invoked like --disk=? or --graphics=help. Example:
 
@@ -62,4 +62,4 @@ Basically, any of the compound options like --disk or --graphics that take sub a
 ```
 
 
-We aim to document common bits in the virt-install man page, but for less commonly used options it's better to see [the official libvirt XML documenation](http://libvirt.org/formatdomain.html).
+We aim to document common bits in the virt-install man page, but for less commonly used options it's better to see [the official libvirt XML documenation](https://libvirt.org/formatdomain.html).

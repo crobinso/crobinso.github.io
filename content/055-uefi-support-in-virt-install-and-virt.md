@@ -5,7 +5,7 @@ Tags: fedora, virt
 Slug: uefi-support-in-virt-install-and-virt
 Status: published
 
-One of the new features in [virt-manager 1.2.0](http://blog.wikichoon.com/2015/05/virt-manager-120-released.html) (from back in May) is user friendly support for enabling UEFI.
+One of the new features in [virt-manager 1.2.0](https://blog.wikichoon.com/2015/05/virt-manager-120-released.html) (from back in May) is user friendly support for enabling UEFI.
 
 First a bit about terminology: When UEFI is packaged up to run in an x86 VM, it's often called **OVMF**. When UEFI is packaged up to run in an AArch64 VM, it's often called **AAVMF**. But I'll just refer to all of it as UEFI.
 

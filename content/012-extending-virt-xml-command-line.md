@@ -7,9 +7,9 @@ Status: published
 
 Edit May 2019: This tutorial is out of date. A modern version is on the virt-manager github wiki: <https://github.com/virt-manager/virt-manager/wiki/Extending-the-command-line>
 
-As [previously explained](http://blog.wikichoon.com/2014/03/virt-xml-edit-libvirt-xml-from-command.html), virt-manager 1.0.0 shipped with a tool called virt-xml, which enables editing libvirt XML from the command line in one shot. This post will walk through an example of patching virt-xml to support a new libvirt XML value.
+As [previously explained](https://blog.wikichoon.com/2014/03/virt-xml-edit-libvirt-xml-from-command.html), virt-manager 1.0.0 shipped with a tool called virt-xml, which enables editing libvirt XML from the command line in one shot. This post will walk through an example of patching virt-xml to support a new libvirt XML value.
 
-A bit of background: libvirt VM configuration is in XML format. It [has quite an extensive XML schema](http://libvirt.org/formatdomain.html). For QEMU/KVM guests, most of the XML attributes map to qemu command line values. QEMU is always adding new emulated hardware and new features, which in turn require the XML schema to be extended. Example: this [recent libvirt change](http://libvirt.org/git/?p=libvirt.git;a=commit;h=08d07e5fd8a4c072bf040b3949bbd969f98d1081) to allow turning off Spice drag + drop support with a `<filetransfer enable='no'/\>` option.
+A bit of background: libvirt VM configuration is in XML format. It [has quite an extensive XML schema](https://libvirt.org/formatdomain.html). For QEMU/KVM guests, most of the XML attributes map to qemu command line values. QEMU is always adding new emulated hardware and new features, which in turn require the XML schema to be extended. Example: this [recent libvirt change](https://libvirt.org/git/?p=libvirt.git;a=commit;h=08d07e5fd8a4c072bf040b3949bbd969f98d1081) to allow turning off Spice drag + drop support with a `<filetransfer enable='no'/\>` option.
 
 For this example, we are going to expose a different property: defaultMode, also part of the graphics device. defaultMode can be used to tell qemu to open all spice channels in secure TLS mode. But for the purpose of this example, what defaultMode actually does and how it works isn't important. For virt-xml, the only important bit is getting the value for the command line, writing it correctly as XML, and unit testing the XML generation.
 
@@ -50,7 +50,7 @@ The virtinst/ directory contains the internal XML building API used by all the t
 -   osxml.py: `<os\>` block
 -   And so on
 
-If you aren't sure what file or class you need to alter, try grepping for a property you know that virt-install already supports. So, for example, using [virt-install --graphics=?](http://blog.wikichoon.com/2014/02/virt-install-command-line-introspection.html) I see that there's a property named passwdValidTo. Doing 'git grep passwdValidTo' will point to virtinst/devicegraphics.py
+If you aren't sure what file or class you need to alter, try grepping for a property you know that virt-install already supports. So, for example, using [virt-install --graphics=?](https://blog.wikichoon.com/2014/02/virt-install-command-line-introspection.html) I see that there's a property named passwdValidTo. Doing 'git grep passwdValidTo' will point to virtinst/devicegraphics.py
 
 'XMLProperty' is some custom glue that maps a python class property to an XML value, for both reading and writing. The value passed to XMLProperty is an XML xpath. If you don't know how xpaths work, google around, or try to find an existing example in the virtinst code.
 
@@ -137,7 +137,7 @@ For each new option sub property, the general rule is we don't need to explicitl
 
 **Step 5) Submit the patch!**
 
-So your patch is done! git commit -a && git send-email -1 --to virt-tools-list@redhat.com or simply drop it in a [bug report](http://virt-manager.org/bugs/). If you have any questions or need any assitance, [drop us a line](http://virt-manager.org/communicate/).
+So your patch is done! git commit -a && git send-email -1 --to virt-tools-list@redhat.com or simply drop it in a [bug report](https://virt-manager.org/bugs/). If you have any questions or need any assitance, [drop us a line](https://virt-manager.org/communicate/).
 
 
 (update 2015-09-04: Point git links to github)

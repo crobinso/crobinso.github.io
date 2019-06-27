@@ -5,9 +5,9 @@ Tags: fedora, virt
 Slug: setting-up-minimal-rbdceph-server-for
 Status: published
 
-In my [last post](http://blog.wikichoon.com/2014/12/setting-up-minimal-gluster-server-for.html) I talked about setting up a minimal gluster server. Similarly this will describe how I set up a minimal single node rbd/ceph server in a VM for libvirt network storage testing.
+In my [last post](https://blog.wikichoon.com/2014/12/setting-up-minimal-gluster-server-for.html) I talked about setting up a minimal gluster server. Similarly this will describe how I set up a minimal single node rbd/ceph server in a VM for libvirt network storage testing.
 
-I pulled info from a [few](http://eu.ceph.com/docs/wip-6919/start/quick-start/) [different](http://derekweitzel.blogspot.com/2012/02/ceph-on-fedora-16.html) [places](http://dachary.org/?p=2374) and a lot of other reading, but things just weren't working on F21; trying `systemctl start ceph` just wasn't producing any output, and all the `ceph` cli commands just hung. I had better success with F20.
+I pulled info from a [few](https://eu.ceph.com/docs/wip-6919/start/quick-start/) [different](https://derekweitzel.blogspot.com/2012/02/ceph-on-fedora-16.html) [places](https://dachary.org/?p=2374) and a lot of other reading, but things just weren't working on F21; trying `systemctl start ceph` just wasn't producing any output, and all the `ceph` cli commands just hung. I had better success with F20.
 
 The main difficulty was figuring out a working ceph.conf. My VM's IP address is 1902.168.124.101, and its hostname is 'localceph', so here's what I ended up with:
 

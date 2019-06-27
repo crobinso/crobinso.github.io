@@ -5,7 +5,7 @@ Tags: fedora, virt
 Slug: virt-manager-140-release
 Status: published
 
-I've just released virt-manager 1.4.0. Besides the [spice GL bits that I previously talked about](http://blog.wikichoon.com/2016/05/spice-openglvirgl-acceleration-on.html), nothing too much exciting in this release except a lot of virt-install/virt-xml command line extensions.
+I've just released virt-manager 1.4.0. Besides the [spice GL bits that I previously talked about](https://blog.wikichoon.com/2016/05/spice-openglvirgl-acceleration-on.html), nothing too much exciting in this release except a lot of virt-install/virt-xml command line extensions.
 
 The changelog highlights:
 

@@ -5,6 +5,6 @@ Tags: fedora, virt
 Slug: qemu-220-in-rawhide-virt-preview
 Status: published
 
-qemu-2.2.0 was released yesterday, check the [release announcement](https://lists.gnu.org/archive/html/qemu-devel/2014-12/msg01111.html) and [fine grained changelog](http://wiki.qemu.org/ChangeLog/2.2). Packages are available in rawhide and [fedora-virt-preview](http://fedoraproject.org/wiki/Virtualization_Preview_Repository) for Fedora 21.
+qemu-2.2.0 was released yesterday, check the [release announcement](https://lists.gnu.org/archive/html/qemu-devel/2014-12/msg01111.html) and [fine grained changelog](https://wiki.qemu.org/ChangeLog/2.2). Packages are available in rawhide and [fedora-virt-preview](https://fedoraproject.org/wiki/Virtualization_Preview_Repository) for Fedora 21.
 
 But now that Fedora 21 is out, there won't be any new builds for F20 virt-preview. If you want to play with the latest and greatest virt bits, you'll need to update to F21.

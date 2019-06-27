@@ -12,8 +12,8 @@ This release includes:
 -   Switch to libosinfo as OS metadata database (Giuseppe Scrivano)
 -   Use libosinfo for OS detection from CDROM media labels (Giuseppe Scrivano)
 -   Use libosinfo for improved OS defaults, like recommended disk size (Giuseppe Scrivano)
--   virt-image tool has been removed, as [previously announced](http://blog.wikichoon.com/2014/04/deprecating-little-used-tool-virt-image1.html)
--   [Enable Hyper-V enlightenments for Windows VMs](http://blog.wikichoon.com/2014/07/enabling-hyper-v-enlightenments-with-kvm.html)
+-   virt-image tool has been removed, as [previously announced](https://blog.wikichoon.com/2014/04/deprecating-little-used-tool-virt-image1.html)
+-   [Enable Hyper-V enlightenments for Windows VMs](https://blog.wikichoon.com/2014/07/enabling-hyper-v-enlightenments-with-kvm.html)
 -   Revert virtio-console default, back to plain serial console
 -   Experimental q35 option in new VM 'customize' dialog
 -   UI for virtual network QoS settings (Giuseppe Scrivano)

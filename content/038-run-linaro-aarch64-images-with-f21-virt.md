@@ -5,10 +5,10 @@ Tags: fedora, virt
 Slug: run-linaro-aarch64-images-with-f21-virt
 Status: published
 
-Linaro generates some minimal openembedded based aarch64 disk images, which are useful for virt testing. There's simple instructions [over here](http://suihkulokki.blogspot.com/2014/08/booting-linaro-armv8-oe-images-with-qemu.html) for running them with qemu on an x86 host. But with Fedora 21 packages, you can also these images with virt-install + libvirt + qemu.
+Linaro generates some minimal openembedded based aarch64 disk images, which are useful for virt testing. There's simple instructions [over here](https://suihkulokki.blogspot.com/2014/08/booting-linaro-armv8-oe-images-with-qemu.html) for running them with qemu on an x86 host. But with Fedora 21 packages, you can also these images with virt-install + libvirt + qemu.
 
--   Grab the disk image, I used this one: <http://releases.linaro.org/14.10/openembedded/aarch64/vexpress64-openembedded_minimal-armv8-gcc-4.9_20141023-693.img.gz>
--   Grab the associated boot bits: <http://releases.linaro.org/14.10/openembedded/aarch64/Image>
+-   Grab the disk image, I used this one: <https://releases.linaro.org/14.10/openembedded/aarch64/vexpress64-openembedded_minimal-armv8-gcc-4.9_20141023-693.img.gz>
+-   Grab the associated boot bits: <https://releases.linaro.org/14.10/openembedded/aarch64/Image>
 -   Extract the disk image: `unar vexpress64-openembedded_minimal-armv8-gcc-4.9_20141023-693.img.gz`
 
 

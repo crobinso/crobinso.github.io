@@ -11,7 +11,7 @@ This affects not just live migration (which I doubt anyone cares about in this c
 
 In reality I don't expect this to affect anybody really. If you have saved data or snapshots that are important, you can load/restore them on Fedora 20, fully poweroff the VM, virsh edit and change the machine= value to something newer like pc-1.6, start the VM, and recreate the data to the best of your ability. save data/memory snapshots created on F20 will load correctly on F21. I realize this isn't ideal but hopefully no one is affected and it doesn't matter in practice.
 
-Some background: In Fedora 17 and earlier, we shipped a qemu package based on [qemu-kvm.git](https://git.kernel.org/cgit/virt/kvm/qemu-kvm.git), which was a fork of [qemu.git](http://git.qemu.org/qemu.git) containing KVM support and a few other bits. Over time the QEMU and KVM community worked to merge all the forked bits into mainline qemu, which was fully completed with the qemu 1.3 release. Fedora 18 was the first Fedora release to ship this merged codebase
+Some background: In Fedora 17 and earlier, we shipped a qemu package based on [qemu-kvm.git](https://git.kernel.org/cgit/virt/kvm/qemu-kvm.git), which was a fork of [qemu.git](https://git.qemu.org/qemu.git) containing KVM support and a few other bits. Over time the QEMU and KVM community worked to merge all the forked bits into mainline qemu, which was fully completed with the qemu 1.3 release. Fedora 18 was the first Fedora release to ship this merged codebase
 
 Unfortunately, qemu-kvm.git had accumulated some unintentional incompatibilities with qemu.git: minor internal bits that affected migration but had little other functional impact. The end result was that a qemu-kvm-1.2 guest could not be migrated to the new merged qemu-1.3.
 

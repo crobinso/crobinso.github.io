@@ -5,7 +5,7 @@ Tags: fedora, virt
 Slug: setting-up-minimal-gluster-server-for
 Status: published
 
-Recently I've been working on virt-install/virt-manager support for libvirt network storage pools like [gluster](https://libvirt.org/storage.html#StorageBackendGluster) and [rbd/ceph](https://libvirt.org/storage.html#StorageBackendRBD). For testing I set up a single node minimal gluster server in an F21 VM. I mostly followed the [gluster quickstart](http://www.gluster.org/community/documentation/index.php/QuickStart) and hit only a few minor hiccups.
+Recently I've been working on virt-install/virt-manager support for libvirt network storage pools like [gluster](https://libvirt.org/storage.html#StorageBackendGluster) and [rbd/ceph](https://libvirt.org/storage.html#StorageBackendRBD). For testing I set up a single node minimal gluster server in an F21 VM. I mostly followed the [gluster quickstart](https://www.gluster.org/community/documentation/index.php/QuickStart) and hit only a few minor hiccups.
 
 Steps for the gluster setup:
 
@@ -25,7 +25,7 @@ Steps for the gluster setup:
 * Verified that qemu can access the ISO: `qemu-system-x86_64 -cdrom gluster://$VM_IPADDRESS/gv0/boot.iso`
 * Once I had a working setup, I used virt-manager to create a snapshot of the running VM config. So anytime I want to test gluster, I just start the VM snapshot and I know things are all nicely setup.
 
-The bits about 'allow-insecure' is so that an unprivileged client can access the gluster share, see [this bug](https://bugzilla.redhat.com/show_bug.cgi?id=1171436) for more info. The gluster docs also have a [section about it](http://www.gluster.org/community/documentation/index.php/Libgfapi_with_qemu_libvirt#Tuning_glusterfsd_to_accept_requests_from_QEMU) but the steps don't appear to be complete.
+The bits about 'allow-insecure' is so that an unprivileged client can access the gluster share, see [this bug](https://bugzilla.redhat.com/show_bug.cgi?id=1171436) for more info. The gluster docs also have a [section about it](https://www.gluster.org/community/documentation/index.php/Libgfapi_with_qemu_libvirt#Tuning_glusterfsd_to_accept_requests_from_QEMU) but the steps don't appear to be complete.
 
 The final bit is setting up a storage pool with libvirt. The XML I passed to `virsh pool-define` on my host looks like:
 

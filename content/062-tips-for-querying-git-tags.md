@@ -11,10 +11,10 @@ With package maintenance, bug triage, and email support, I often need to look at
 
 ### Better git tag listing
 
-Based on Peter Hutterer's ['git bi'](http://who-t.blogspot.com/2012/06/git-branch-info.html) alias for improved branch listing (which is great and highly recommended), I made one for improved tags output that I mapped as 'git tags'. Output looks like:
+Based on Peter Hutterer's ['git bi'](https://who-t.blogspot.com/2012/06/git-branch-info.html) alias for improved branch listing (which is great and highly recommended), I made one for improved tags output that I mapped as 'git tags'. Output looks like:
 
 
-[![](http://1.bp.blogspot.com/-S1JscfM_bNg/U8WjuPH4hYI/AAAAAAAAAEc/6oZXuvPiHh8/s1600/Screenshot+from+2014-07-15+17:56:45.png){width="400" height="109"}](http://1.bp.blogspot.com/-S1JscfM_bNg/U8WjuPH4hYI/AAAAAAAAAEc/6oZXuvPiHh8/s1600/Screenshot+from+2014-07-15+17:56:45.png)
+![Example 'git tags' output]({static}/images/062-tips-for-querying-git-tags-1.png){width="400" height="109"}
 
 -   Shows tag name, commit message, commit ID, and date, all colorized. Commit message is redundant for many projects that tag the release commit, but it's interesting in some cases.
 -   Tags are listed by date rather than alphabetically. Some projects change tag string formats, or versioning schemes, that then don't sort correctly when listed alphabetically. Sorting by date makes it easy to see the latest tag. Often I just want to know what the latest tag or the latest stable release is, this makes it easy.
@@ -39,7 +39,7 @@ done'"
 
 ### Find the first tag that contains a commit
 
-This seems to come up quite a bit for me. An example is [here](http://www.redhat.com/archives/libvir-list/2014-July/msg00832.html); a user was asking about a virt-install feature, and I wanted to tell them what version it appeared in. I grepped `git log`, found the commit, then ran:
+This seems to come up quite a bit for me. An example is [here](https://www.redhat.com/archives/libvir-list/2014-July/msg00832.html); a user was asking about a virt-install feature, and I wanted to tell them what version it appeared in. I grepped `git log`, found the commit, then ran:
 
 
 ```console

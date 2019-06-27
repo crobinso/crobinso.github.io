@@ -5,7 +5,7 @@ Tags: fedora, virt
 Slug: updated-instructions-for-using-qemu
 Status: published
 
-Last year I started a wiki page about testing [Fedora's Secureboot support](http://fedoraproject.org/wiki/Secureboot) with KVM. Just now I've cleaned up the page and modernized it for the current state of virt packages in F21:
+Last year I started a wiki page about testing [Fedora's Secureboot support](https://fedoraproject.org/wiki/Secureboot) with KVM. Just now I've cleaned up the page and modernized it for the current state of virt packages in F21:
 
 <https://fedoraproject.org/wiki/Using_UEFI_with_QEMU>
 

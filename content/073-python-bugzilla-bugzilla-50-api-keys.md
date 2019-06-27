@@ -16,7 +16,7 @@ Thankfully with bugzilla 5.0 and later there's a better option: API keys. Here's
 Login to the bugzilla web UI, click your email, select Preferences, select API Keys. Generate an API key with an optional comment like 'python-bugzilla'. Afterwards the screen will look something like this:
 
 
-[![](https://3.bp.blogspot.com/-fi-nFEuW71o/XDZ7h-5oIWI/AAAAAAAAC4g/3jiO8m8nZN83chbw4-Wa9PHUjZvebEHCACLcBGAs/s640/bugzilla-apikey.png){width="640" height="384"}](https://3.bp.blogspot.com/-fi-nFEuW71o/XDZ7h-5oIWI/AAAAAAAAC4g/3jiO8m8nZN83chbw4-Wa9PHUjZvebEHCACLcBGAs/s1600/bugzilla-apikey.png)
+![Bugzilla web UI API key setup]({static}/images/073-python-bugzilla-bugzilla-50-api-keys-1.png){width="640" height="384"}
 
 
 MY-EXAMPLE-API-KEY is not my actual key, I just replaced it for demo purposes. The actual key is a long string of characters and numbers. Copy that string value and write a bugzillarc file like this:

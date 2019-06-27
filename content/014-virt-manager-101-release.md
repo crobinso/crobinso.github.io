@@ -5,7 +5,7 @@ Tags: fedora, virt
 Slug: virt-manager-101-release
 Status: published
 
-I've just released virt-manager 1.0.1. This was mostly a bug fix release to gather up the sizeable number of bug fixes that accumulated since [virt-manager 1.0.0](http://blog.wikichoon.com/2014/02/virt-manager-100-released.html) was released last month.
+I've just released virt-manager 1.0.1. This was mostly a bug fix release to gather up the sizeable number of bug fixes that accumulated since [virt-manager 1.0.0](https://blog.wikichoon.com/2014/02/virt-manager-100-released.html) was released last month.
 
 Though there were a few mini features added:
 

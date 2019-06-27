@@ -20,4 +20,4 @@ Occasionally I want to contribute to a project using mercurial on bitbucket.org 
 
 Though I haven't figured out how to update a pull request... instead I've resorted to closing the first request, creating a new branch on my fork, and submitting a brand new pull request. There's probably some nicer automagic way but I haven't figured it out.
 
-(Hopefully in the near future more of the python ecosystem will [move to git](http://lwn.net/Articles/623905/).)
+(Hopefully in the near future more of the python ecosystem will [move to git](https://lwn.net/Articles/623905/).)

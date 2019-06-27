@@ -13,8 +13,8 @@ However, if you want to revert it in a hacky way, this should cover you until th
 
 
 ```
-sudo wget http://cgit.freedesktop.org/sound-theme-freedesktop/plain/stereo/bell.oga?id=38bc773912317a2163083b6f483fbc8e6fb61123 -O /usr/share/sounds/freedesktop/stereo/bell.oga
+sudo wget https://cgit.freedesktop.org/sound-theme-freedesktop/plain/stereo/bell.oga?id=38bc773912317a2163083b6f483fbc8e6fb61123 -O /usr/share/sounds/freedesktop/stereo/bell.oga
 ```
 
 
-`<rant\>`Why this was changed is really anyone's guess. The [commit message](http://cgit.freedesktop.org/sound-theme-freedesktop/commit/?id=18e55993d311444854a73ed6b6e6670fcbac4946) is needlessly vague. I couldn't find any mailing list posting on freedesktop lists or gnome's desktop-devel-list, nor any bug report that might have spurned the change. The 'bell' noise was just overwritten in place, despite the fact that the new noise is not remotely a 'bell' sound, though I guess the bell name is about the action and not the sound content. The git repo had been unchanged for nearly 3 years, not an issue in itself, just makes the above bits stick out even more. And finally I really don't understand why the most common sound effect on a stock install would be a noise that is an annoyance by nature: a dripping/leaking faucet.`</rant/>`
+`<rant\>`Why this was changed is really anyone's guess. The [commit message](https://cgit.freedesktop.org/sound-theme-freedesktop/commit/?id=18e55993d311444854a73ed6b6e6670fcbac4946) is needlessly vague. I couldn't find any mailing list posting on freedesktop lists or gnome's desktop-devel-list, nor any bug report that might have spurned the change. The 'bell' noise was just overwritten in place, despite the fact that the new noise is not remotely a 'bell' sound, though I guess the bell name is about the action and not the sound content. The git repo had been unchanged for nearly 3 years, not an issue in itself, just makes the above bits stick out even more. And finally I really don't understand why the most common sound effect on a stock install would be a noise that is an annoyance by nature: a dripping/leaking faucet.`</rant/>`

@@ -10,6 +10,7 @@ DEFAULT_LANG = 'en'
 
 PATH = 'content'
 THEME = "theme"
+STATIC_PATHS = ["images"]
 
 # We don't use any of these feeds
 CATEGORY_FEED_ATOM = None

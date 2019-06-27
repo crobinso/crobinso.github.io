@@ -5,9 +5,9 @@ Tags: fedora, virt
 Slug: a-brief-ish-history-of-virtinst-and
 Status: published
 
-[virt-install](http://linux.die.net/man/1/virt-install) is a command line tool for creating new virtual machines via libvirt. It's an important piece of the libvirt ecosystem that has shipped in RHEL5.0 and up, and over a dozen Fedora versions.
+[virt-install](https://linux.die.net/man/1/virt-install) is a command line tool for creating new virtual machines via libvirt. It's an important piece of the libvirt ecosystem that has shipped in RHEL5.0 and up, and over a dozen Fedora versions.
 
-It wasn't always called virt-install though: it started life as xenguest-install.py written by [Jeremy Katz](http://velohacker.com/). I think it was just an internal Red Hat only thing for a brief period, until it first surfaced as part of the Fedora 'xen' package in [January 2006](http://pkgs.fedoraproject.org/cgit/xen.git/commit/?id=02687b4e3f7fa0db5de34280a2cb7e1a8eb8ff18):
+It wasn't always called virt-install though: it started life as xenguest-install.py written by [Jeremy Katz](https://velohacker.com/). I think it was just an internal Red Hat only thing for a brief period, until it first surfaced as part of the Fedora 'xen' package in [January 2006](https://pkgs.fedoraproject.org/cgit/xen.git/commit/?id=02687b4e3f7fa0db5de34280a2cb7e1a8eb8ff18):
 
 
 ```git
@@ -43,7 +43,7 @@ Options:
  -p, --paravirt    This guest should be a paravirtualized guest
  -l LOCATION, --location=LOCATION
             Installation source for paravirtualized guest (eg,
-            nfs:host:/path, http://host/path, ftp://host/path)
+            nfs:host:/path, https://host/path, ftp://host/path)
  -x EXTRA, --extra-args=EXTRA
             Additional arguments to pass to the installer with
             paravirt guests
@@ -51,10 +51,10 @@ Options:
 
 All those bits are still working with virt-install today, although many are are deprecated and hidden from the --help output by default.
 
-In early 2006, libvirt barely even existed, so the xenguest-install.py was generating [xen xm](http://wiki.xen.org/wiki/Xen_Configuration_File_Options) config files (basically just raw python code) in /etc/xen.
+In early 2006, libvirt barely even existed, so the xenguest-install.py was generating [xen xm](https://wiki.xen.org/wiki/Xen_Configuration_File_Options) config files (basically just raw python code) in /etc/xen.
 Fedora CVS was the canonical home of the script.
 
-In March 2006, [Dan Berrangé](http://berrange.com/) [started work on virt-manager](https://git.fedorahosted.org/cgit/virt-manager.git/commit/?id=3ed0ef3). It was very briefly called gnome-vm-manager, then settled into gnome-virt-manager until July 2006 when it was [renamed to virt-manager](https://git.fedorahosted.org/cgit/virt-manager.git/commit/?id=dc0d6db84cfe78c4a479381ead55bbd83c0cca55).
+In March 2006, [Dan Berrangé](https://berrange.com/) [started work on virt-manager](https://git.fedorahosted.org/cgit/virt-manager.git/commit/?id=3ed0ef3). It was very briefly called gnome-vm-manager, then settled into gnome-virt-manager until July 2006 when it was [renamed to virt-manager](https://git.fedorahosted.org/cgit/virt-manager.git/commit/?id=dc0d6db84cfe78c4a479381ead55bbd83c0cca55).
 
 In August 2006, xenguest-install moved to its own repo, [python-xeninst](https://git.fedorahosted.org/cgit/python-virtinst.git/commit/?id=1e2e1aa0ca0b5ed8669be61aa4271a3e8c1d7333):
 
@@ -72,7 +72,7 @@ Date:  Tue Aug 8 21:37:49 2006 -0400
 
 Much of logic was moved to a 'xeninst' module. There were some initial bits for generating libvirt XML, but the primary usage was still generating native xen configuration.
 
-(Both repositories were hosted in mercurial at hg.et.redhat.com for many years. We eventually [transitioned to git in March 2011](http://www.redhat.com/archives/virt-tools-list/2011-March/msg00056.html). Actually it's amazing it was only 3 years ago: I've pretty much entirely forgotten how to use mercurial despite using it for 4 years prior.)
+(Both repositories were hosted in mercurial at hg.et.redhat.com for many years. We eventually [transitioned to git in March 2011](https://www.redhat.com/archives/virt-tools-list/2011-March/msg00056.html). Actually it's amazing it was only 3 years ago: I've pretty much entirely forgotten how to use mercurial despite using it for 4 years prior.)
 
 In October 2006, the project was [renamed python-virtinst](https://git.fedorahosted.org/cgit/python-virtinst.git/commit/?id=761ccd8a65a79737431aa1415d16b19ef9d8f9c8) and the tool renamed to virt-install. By this point virt-manager was using the xeninst module for guest creation and needed to [handle the rename](https://git.fedorahosted.org/cgit/virt-manager.git/commit/?id=cd946bcfae2960c4769c5f12e235d1026a33328d) as well.
 
@@ -82,6 +82,6 @@ However over the next few years we had some growing pains with the virtinst modu
 
 Then there was the general frustration of doing virt-manager development when it evolved in lockstep with virtinst: running upstream virt-manager always required running up to date python-virtinst, which was a barrier to upstream contribution.
 
-So in February 2012 I layed out some reasons for [dropping virtinst as a public API and merging the code into virt-manager.git](http://www.redhat.com/archives/virt-tools-list/2012-February/msg00040.html), though it didn't fully happen until [april 2013 during the virt-manager 0.10.0 cycle](https://www.redhat.com/archives/virt-tools-list/2013-April/msg00026.html). In the intervening year, I sent patches to koan and koji to move off virtinst to calling the needed virt-\* tool directly.
+So in February 2012 I layed out some reasons for [dropping virtinst as a public API and merging the code into virt-manager.git](https://www.redhat.com/archives/virt-tools-list/2012-February/msg00040.html), though it didn't fully happen until [april 2013 during the virt-manager 0.10.0 cycle](https://www.redhat.com/archives/virt-tools-list/2013-April/msg00026.html). In the intervening year, I sent patches to koan and koji to move off virtinst to calling the needed virt-\* tool directly.
 
-So nowadays virtinst, virt-install, etc. all live with virt-manager.git. If you're looking for a library that helps handle libvirt XML or create libvirt VMs, check out [libvirt-designer](http://libvirt.org/git/?p=libvirt-designer.git;a=summary) and [libvirt-gobject/libvirt-gconfig](http://libvirt.org/git/?p=libvirt-glib.git;a=summary).
+So nowadays virtinst, virt-install, etc. all live with virt-manager.git. If you're looking for a library that helps handle libvirt XML or create libvirt VMs, check out [libvirt-designer](https://libvirt.org/git/?p=libvirt-designer.git;a=summary) and [libvirt-gobject/libvirt-gconfig](https://libvirt.org/git/?p=libvirt-glib.git;a=summary).

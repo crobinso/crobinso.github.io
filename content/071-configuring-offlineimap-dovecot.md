@@ -5,7 +5,7 @@ Tags: fedora
 Slug: configuring-offlineimap-dovecot
 Status: published
 
-Recently some internal discussions at Red Hat motivated me to look into using [offlineimap](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwi9uomL7_fTAhXFqlQKHaGNCn0QFggnMAA&url=http%3A%2F%2Fwww.offlineimap.org%2F&usg=AFQjCNEWRAYFBP6Wj-bMnmtNno_ht0YKBQ&sig2=N58DcSwDbMJOKjNqKK_Ieg). I had thought about doing this for some time as a step towards giving [mutt](http://www.mutt.org/) a try, but for now I decided to keep my original thunderbird setup. This turned out to be a bit more work than I anticipated, so I'm documenting it here.
+Recently some internal discussions at Red Hat motivated me to look into using [offlineimap](https://github.com/OfflineIMAP/offlineimap). I had thought about doing this for some time as a step towards giving [mutt](https://www.mutt.org/) a try, but for now I decided to keep my original thunderbird setup. This turned out to be a bit more work than I anticipated, so I'm documenting it here.
 
 The primary difficulty is that offlineimap stores mail locally in Maildir format, but thunderbird only reads mbox format. The common solution to this is to serve the offlineimap mail via a local mail server, and have thunderbird connect to that. For the mail server I'm using [dovecot](https://www.dovecot.org/). Getting offlineimap output and dovecot to play nicely together in a format that thunderbird can consume was a bit tricky...
 

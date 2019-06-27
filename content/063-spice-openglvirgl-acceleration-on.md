@@ -12,7 +12,7 @@ I'll explain below how you can test things on Fedora 24, but first let's cover t
 
 ### Caveats and known issues
 
--   This doesn't work with qemu:///system yet, which is what [virt-manager uses by default](http://blog.wikichoon.com/2016/01/qemusystem-vs-qemusession.html). Permissions and [cgroup access](http://www.redhat.com/archives/libvir-list/2016-May/msg01435.html) are problematic at the moment. qemu:///session (the gnome-boxes default) is saved from some of these issues, but it's still affected by...
+-   This doesn't work with qemu:///system yet, which is what [virt-manager uses by default](https://blog.wikichoon.com/2016/01/qemusystem-vs-qemusession.html). Permissions and [cgroup access](https://www.redhat.com/archives/libvir-list/2016-May/msg01435.html) are problematic at the moment. qemu:///session (the gnome-boxes default) is saved from some of these issues, but it's still affected by...
 -   [svirt/selinux issues](https://bugzilla.redhat.com/show_bug.cgi?id=1337333). We haven't come up with a plan here yet.
 -   When enabled, your VM can't be migrated or saved (migrate to disk), either directly or as part of taking a VM snapshot
 -   This only works if connecting to a VM on your local machine. And once enabled, the VM isn't accessible remotely whatsoever
@@ -41,7 +41,7 @@ $ virt-xml --connect $URI $VM_NAME --confirm --edit --graphics clearxml=yes,type
 ```
 
 
-The first command will switch the graphics device to 'virtio' and enable the 3D acceleration setting. The second command will set up spice to listen locally only, and enable GL. Make sure to fully poweroff the VM afterwards for the settings to take effect. If you want to make the changes manually with '[virsh edit](http://wiki.libvirt.org/page/FAQ#Where_are_VM_config_files_stored.3F_How_do_I_edit_a_VM.27s_XML_config.3F)', the XML specifics are described in the [spice GL documentation](https://cgit.freedesktop.org/spice/spice/commit/?id=782c7508e28fdeee786cdcebffd22f772d7f09ec).
+The first command will switch the graphics device to 'virtio' and enable the 3D acceleration setting. The second command will set up spice to listen locally only, and enable GL. Make sure to fully poweroff the VM afterwards for the settings to take effect. If you want to make the changes manually with '[virsh edit](https://wiki.libvirt.org/page/FAQ#Where_are_VM_config_files_stored.3F_How_do_I_edit_a_VM.27s_XML_config.3F)', the XML specifics are described in the [spice GL documentation](https://cgit.freedesktop.org/spice/spice/commit/?id=782c7508e28fdeee786cdcebffd22f772d7f09ec).
 
 Once your VM has started up, you can verify that everything is working correctly by checking `glxinfo` output in the VM, 'virgl' should appear in the renderer string:
 
