@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Cole Robinson'
-SITENAME = "Cole's dev log"
+SITENAME = 'Cole Robinson'
+SITESUBTITLE = "Cole's dev log"
 SITEURL = 'http://localhost:8000'
 TIMEZONE = 'America/New_York'
 DEFAULT_LANG = 'en'
