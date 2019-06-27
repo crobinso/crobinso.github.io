@@ -3,20 +3,20 @@
     <head>
         <title>Extending the virt-xml command line - Cole Robinson</title>
         <meta charset="utf-8" />
-        <link href="https://crobinso.github.io/theme/minima-main.css" rel="stylesheet" />
-        <link href="https://crobinso.github.io/theme/coletheme.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="https://crobinso.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
+        <link href="https://blog.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
     </head>
 
     <body id="index" class="archive">
         <div class="wrapper">
             <header class="site-header" role="banner">
-                <a class="site-title" href="https://crobinso.github.io">Cole Robinson</a>
+                <a class="site-title" href="https://blog.wikichoon.com">Cole Robinson</a>
                 <nav class="site-nav">
                 <div class="trigger">
-                    <a class="page-link" href="https://crobinso.github.io">Home</a>
-                    <a class="page-link" href="https://crobinso.github.io/archives.html">Archives</a>
+                    <a class="page-link" href="https://blog.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog.wikichoon.com/archives.html">Archives</a>
                 <!-- -->
                 </div></nav>
              </header>
@@ -27,13 +27,13 @@
     <p class="post-meta">
       <time class="dt-published" datetime="2014-03-10T18:03:00-04:00" itemprop="datePublished">Mon 10 March 2014
       </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
-      </span> • </a> Tags: <a href="https://crobinso.github.io/tag/fedora.html">fedora </a><a href="https://crobinso.github.io/tag/virt.html">virt </a>    </p>
+      </span> • </a> Tags: <a href="https://blog.wikichoon.com/tag/fedora.html">fedora</a> <a href="https://blog.wikichoon.com/tag/virt.html">virt</a>     </p>
   </header>
 
   <div class="post-content">
     <p>Edit May 2019: This tutorial is out of date. A modern version is on the virt-manager github wiki: <a href="https://github.com/virt-manager/virt-manager/wiki/Extending-the-command-line">https://github.com/virt-manager/virt-manager/wiki/Extending-the-command-line</a></p>
-<p>As <a href="http://blog.wikichoon.com/2014/03/virt-xml-edit-libvirt-xml-from-command.html">previously explained</a>, virt-manager 1.0.0 shipped with a tool called virt-xml, which enables editing libvirt XML from the command line in one shot. This post will walk through an example of patching virt-xml to support a new libvirt XML value.</p>
-<p>A bit of background: libvirt VM configuration is in XML format. It <a href="http://libvirt.org/formatdomain.html">has quite an extensive XML schema</a>. For QEMU/KVM guests, most of the XML attributes map to qemu command line values. QEMU is always adding new emulated hardware and new features, which in turn require the XML schema to be extended. Example: this <a href="http://libvirt.org/git/?p=libvirt.git;a=commit;h=08d07e5fd8a4c072bf040b3949bbd969f98d1081">recent libvirt change</a> to allow turning off Spice drag + drop support with a <code>&lt;filetransfer enable='no'/\&gt;</code> option.</p>
+<p>As <a href="https://blog.wikichoon.com/2014/03/virt-xml-edit-libvirt-xml-from-command.html">previously explained</a>, virt-manager 1.0.0 shipped with a tool called virt-xml, which enables editing libvirt XML from the command line in one shot. This post will walk through an example of patching virt-xml to support a new libvirt XML value.</p>
+<p>A bit of background: libvirt VM configuration is in XML format. It <a href="https://libvirt.org/formatdomain.html">has quite an extensive XML schema</a>. For QEMU/KVM guests, most of the XML attributes map to qemu command line values. QEMU is always adding new emulated hardware and new features, which in turn require the XML schema to be extended. Example: this <a href="https://libvirt.org/git/?p=libvirt.git;a=commit;h=08d07e5fd8a4c072bf040b3949bbd969f98d1081">recent libvirt change</a> to allow turning off Spice drag + drop support with a <code>&lt;filetransfer enable='no'/\&gt;</code> option.</p>
 <p>For this example, we are going to expose a different property: defaultMode, also part of the graphics device. defaultMode can be used to tell qemu to open all spice channels in secure TLS mode. But for the purpose of this example, what defaultMode actually does and how it works isn't important. For virt-xml, the only important bit is getting the value for the command line, writing it correctly as XML, and unit testing the XML generation.</p>
 <p>You can see the completed virt-xml git commit <a href="https://github.com/virt-manager/virt-manager/commit/b4e4f683761c55259bd5ed4b3c5549568d6147bb">over here</a>.</p>
 <p><strong>Step 0: Run the test suite</strong></p>
@@ -62,7 +62,7 @@
 <li>osxml.py: <code>&lt;os\&gt;</code> block</li>
 <li>And so on</li>
 </ul>
-<p>If you aren't sure what file or class you need to alter, try grepping for a property you know that virt-install already supports. So, for example, using <a href="http://blog.wikichoon.com/2014/02/virt-install-command-line-introspection.html">virt-install --graphics=?</a> I see that there's a property named passwdValidTo. Doing 'git grep passwdValidTo' will point to virtinst/devicegraphics.py</p>
+<p>If you aren't sure what file or class you need to alter, try grepping for a property you know that virt-install already supports. So, for example, using <a href="https://blog.wikichoon.com/2014/02/virt-install-command-line-introspection.html">virt-install --graphics=?</a> I see that there's a property named passwdValidTo. Doing 'git grep passwdValidTo' will point to virtinst/devicegraphics.py</p>
 <p>'XMLProperty' is some custom glue that maps a python class property to an XML value, for both reading and writing. The value passed to XMLProperty is an XML xpath. If you don't know how xpaths work, google around, or try to find an existing example in the virtinst code.</p>
 <p>Notice that this doesn't do much else, like validate that the value passed to defaultMode is actually valid. The general rule is to leave this up to libvirt to complain.</p>
 <p><strong>Step 2: Command line handling</strong></p>
@@ -118,7 +118,7 @@
 <p><strong>Step 4) Documentation?</strong></p>
 <p>For each new option sub property, the general rule is we don't need to explicitly list it in the man page or virt-install/virt-xml --help output. The idea is that command line introspection and libvirt XML documentation should be sufficient. However, if your command line option has some special behavior, or is particularly important, consider extending man/virt-install.pod.</p>
 <p><strong>Step 5) Submit the patch!</strong></p>
-<p>So your patch is done! git commit -a &amp;&amp; git send-email -1 --to virt-tools-list@redhat.com or simply drop it in a <a href="http://virt-manager.org/bugs/">bug report</a>. If you have any questions or need any assitance, <a href="http://virt-manager.org/communicate/">drop us a line</a>.</p>
+<p>So your patch is done! git commit -a &amp;&amp; git send-email -1 --to virt-tools-list@redhat.com or simply drop it in a <a href="https://virt-manager.org/bugs/">bug report</a>. If you have any questions or need any assitance, <a href="https://virt-manager.org/communicate/">drop us a line</a>.</p>
 <p>(update 2015-09-04: Point git links to github)</p>
   </div>
 
@@ -134,11 +134,11 @@
             <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3" align="center">
-        <a href="https://crobinso.github.io/feeds/all.atom.xml">RSS</a>
+        <a href="https://blog.wikichoon.com/feeds/all.atom.xml">RSS</a>
       </div>
     </div>
 

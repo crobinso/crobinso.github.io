@@ -3,20 +3,20 @@
     <head>
         <title>python-bugzilla API changes in git - Cole Robinson</title>
         <meta charset="utf-8" />
-        <link href="https://crobinso.github.io/theme/minima-main.css" rel="stylesheet" />
-        <link href="https://crobinso.github.io/theme/coletheme.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="https://crobinso.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
+        <link href="https://blog.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
     </head>
 
     <body id="index" class="archive">
         <div class="wrapper">
             <header class="site-header" role="banner">
-                <a class="site-title" href="https://crobinso.github.io">Cole Robinson</a>
+                <a class="site-title" href="https://blog.wikichoon.com">Cole Robinson</a>
                 <nav class="site-nav">
                 <div class="trigger">
-                    <a class="page-link" href="https://crobinso.github.io">Home</a>
-                    <a class="page-link" href="https://crobinso.github.io/archives.html">Archives</a>
+                    <a class="page-link" href="https://blog.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog.wikichoon.com/archives.html">Archives</a>
                 <!-- -->
                 </div></nav>
              </header>
@@ -27,7 +27,7 @@
     <p class="post-meta">
       <time class="dt-published" datetime="2016-06-07T20:06:00-04:00" itemprop="datePublished">Tue 07 June 2016
       </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
-      </span> • </a> Tags: <a href="https://crobinso.github.io/tag/fedora.html">fedora </a>    </p>
+      </span> • </a> Tags: <a href="https://blog.wikichoon.com/tag/fedora.html">fedora</a>     </p>
   </header>
 
   <div class="post-content">
@@ -40,7 +40,7 @@
 <p>These are slightly interesting and may impact a few people:</p>
 <ul>
 <li>Credentials are now cached in ~/.cache/python-bugzilla/. If the old ~/.bugzilla{cookies,token} files are in place we will continue to update and use them. * RHBugzilla.rhbz_back_compat __init__ attribute is gone. If the user manually set this to true, we would alter some Bug fields returned via query() to convert python lists into a single comma separated string, to match rhbugzilla output from before the 2012 upgrade. Convert your code to use the modern bugzilla list output.</li>
-<li>bin/bugzilla was converted to argparse, which has a bug on python 2.7 that affects some possible command lines: http://bugs.python.org/issue9334 If you use a command like 'bugzilla modify --cc -foo@example.com' to remove that email from the CC list, you now need to ensure there's an equals sign in there, like --cc=-foo@example.com. That is backwards compatible with old python-bugzilla too, so update your scripts now. A few other options expect that format too.</li>
+<li>bin/bugzilla was converted to argparse, which has a bug on python 2.7 that affects some possible command lines: https://bugs.python.org/issue9334 If you use a command like 'bugzilla modify --cc -foo@example.com' to remove that email from the CC list, you now need to ensure there's an equals sign in there, like --cc=-foo@example.com. That is backwards compatible with old python-bugzilla too, so update your scripts now. A few other options expect that format too.</li>
 <li>bugzilla query --boolean_chart option is removed. It provided a custom specification for crafting complex queries, similar to what the bugzilla UI can do. I don't think anyone is really using this, but if you are, generate a web query URL and pass it to bugzilla query --from-url '$URL' which is much easier to deal with.</li>
 <li>bugzilla query 'boolean' options, where you could say 'bugzilla query --keywords 'foo &amp; bar' to match both substrings, are no longer supported. If you need logic like this, use the --from-url technique mentioned above.</li>
 <li>Bug.get_history() is now Bug.get_history_raw() Bugzilla.bugs_history is now Bugzilla.bugs_history_raw() This API is only a year old and unwisely returns raw output from bugzilla, which has some formatting oddities. I renamed it to *_raw so we have the future opportunity to add an API with better output.</li>
@@ -74,11 +74,11 @@
             <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3" align="center">
-        <a href="https://crobinso.github.io/feeds/all.atom.xml">RSS</a>
+        <a href="https://blog.wikichoon.com/feeds/all.atom.xml">RSS</a>
       </div>
     </div>
 

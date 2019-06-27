@@ -3,20 +3,20 @@
     <head>
         <title>virt-xml: Edit libvirt XML from the command line - Cole Robinson</title>
         <meta charset="utf-8" />
-        <link href="https://crobinso.github.io/theme/minima-main.css" rel="stylesheet" />
-        <link href="https://crobinso.github.io/theme/coletheme.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="https://crobinso.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
+        <link href="https://blog.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
     </head>
 
     <body id="index" class="archive">
         <div class="wrapper">
             <header class="site-header" role="banner">
-                <a class="site-title" href="https://crobinso.github.io">Cole Robinson</a>
+                <a class="site-title" href="https://blog.wikichoon.com">Cole Robinson</a>
                 <nav class="site-nav">
                 <div class="trigger">
-                    <a class="page-link" href="https://crobinso.github.io">Home</a>
-                    <a class="page-link" href="https://crobinso.github.io/archives.html">Archives</a>
+                    <a class="page-link" href="https://blog.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog.wikichoon.com/archives.html">Archives</a>
                 <!-- -->
                 </div></nav>
              </header>
@@ -27,11 +27,11 @@
     <p class="post-meta">
       <time class="dt-published" datetime="2014-03-04T09:00:00-05:00" itemprop="datePublished">Tue 04 March 2014
       </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
-      </span> • </a> Tags: <a href="https://crobinso.github.io/tag/fedora.html">fedora </a><a href="https://crobinso.github.io/tag/virt.html">virt </a>    </p>
+      </span> • </a> Tags: <a href="https://blog.wikichoon.com/tag/fedora.html">fedora</a> <a href="https://blog.wikichoon.com/tag/virt.html">virt</a>     </p>
   </header>
 
   <div class="post-content">
-    <p>We shipped a new tool with <a href="http://blog.wikichoon.com/2014/02/virt-manager-100-released.html">virt-manager 1.0.0</a> called <a href="https://www.redhat.com/archives/virt-tools-list/2014-January/msg00179.html">virt-xml</a>. virt-xml uses virt-install's command line options to allow building and editing libvirt domain XML. A few basic examples:</p>
+    <p>We shipped a new tool with <a href="https://blog.wikichoon.com/2014/02/virt-manager-100-released.html">virt-manager 1.0.0</a> called <a href="https://www.redhat.com/archives/virt-tools-list/2014-January/msg00179.html">virt-xml</a>. virt-xml uses virt-install's command line options to allow building and editing libvirt domain XML. A few basic examples:</p>
 <p>Change the <code>&lt;description\&gt;</code> of domain 'example':</p>
 <div class="highlight"><pre><span></span># virt-xml example --edit --metadata description=&quot;my new description&quot;
 </pre></div>
@@ -57,7 +57,7 @@
 <p>And that's the problem: over time these types of requests put pressure on virt-manager to expose many kind-of-obscure-but-not-so-obscure-that-virsh-edit-is-an-acceptable-answer XML properties in the UI. It was unclear where to draw the line on what should be in the UI and what shouldn't, and we ended up with various UI bits that very few people were actually interacting with.</p>
 <p><strong>Enter virt-xml</strong></p>
 <p>So here's virt-xml, that allows us to easily make these types of XML changes with a single command. This takes the pressure off virt-manager, and provides a friendly middle ground between the GUI and 'virsh edit'. It also greatly simplifies documentation and wiki pages (like fedora test day test cases).</p>
-<p>The CLI API surface is huge compared to virt-manager's UI. There's no reason that virt-xml can't expand to support every XML property exposed by libvirt. And we've worked on making it trivially easy to to extend the tool to handle new XML options: in many cases, it's only <a href="http://blog.wikichoon.com/2014/03/extending-virt-xml-command-line.html"><strong>3 lines of code</strong></a> to add a new --disk/--network/... sub option, including unit testing, <a href="http://blog.wikichoon.com/2014/02/virt-install-command-line-introspection.html">command line introspection</a>, and virt-install support.</p>
+<p>The CLI API surface is huge compared to virt-manager's UI. There's no reason that virt-xml can't expand to support every XML property exposed by libvirt. And we've worked on making it trivially easy to to extend the tool to handle new XML options: in many cases, it's only <a href="https://blog.wikichoon.com/2014/03/extending-virt-xml-command-line.html"><strong>3 lines of code</strong></a> to add a new --disk/--network/... sub option, including unit testing, <a href="https://blog.wikichoon.com/2014/02/virt-install-command-line-introspection.html">command line introspection</a>, and virt-install support.</p>
   </div>
 
 </main>
@@ -72,11 +72,11 @@
             <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3" align="center">
-        <a href="https://crobinso.github.io/feeds/all.atom.xml">RSS</a>
+        <a href="https://blog.wikichoon.com/feeds/all.atom.xml">RSS</a>
       </div>
     </div>
 

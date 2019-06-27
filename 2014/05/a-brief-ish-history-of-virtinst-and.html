@@ -3,20 +3,20 @@
     <head>
         <title>A brief-ish history of virtinst and virt-install - Cole Robinson</title>
         <meta charset="utf-8" />
-        <link href="https://crobinso.github.io/theme/minima-main.css" rel="stylesheet" />
-        <link href="https://crobinso.github.io/theme/coletheme.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="https://crobinso.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
+        <link href="https://blog.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
     </head>
 
     <body id="index" class="archive">
         <div class="wrapper">
             <header class="site-header" role="banner">
-                <a class="site-title" href="https://crobinso.github.io">Cole Robinson</a>
+                <a class="site-title" href="https://blog.wikichoon.com">Cole Robinson</a>
                 <nav class="site-nav">
                 <div class="trigger">
-                    <a class="page-link" href="https://crobinso.github.io">Home</a>
-                    <a class="page-link" href="https://crobinso.github.io/archives.html">Archives</a>
+                    <a class="page-link" href="https://blog.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog.wikichoon.com/archives.html">Archives</a>
                 <!-- -->
                 </div></nav>
              </header>
@@ -27,12 +27,12 @@
     <p class="post-meta">
       <time class="dt-published" datetime="2014-05-06T10:00:00-04:00" itemprop="datePublished">Tue 06 May 2014
       </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
-      </span> • </a> Tags: <a href="https://crobinso.github.io/tag/fedora.html">fedora </a><a href="https://crobinso.github.io/tag/virt.html">virt </a>    </p>
+      </span> • </a> Tags: <a href="https://blog.wikichoon.com/tag/fedora.html">fedora</a> <a href="https://blog.wikichoon.com/tag/virt.html">virt</a>     </p>
   </header>
 
   <div class="post-content">
-    <p><a href="http://linux.die.net/man/1/virt-install">virt-install</a> is a command line tool for creating new virtual machines via libvirt. It's an important piece of the libvirt ecosystem that has shipped in RHEL5.0 and up, and over a dozen Fedora versions.</p>
-<p>It wasn't always called virt-install though: it started life as xenguest-install.py written by <a href="http://velohacker.com/">Jeremy Katz</a>. I think it was just an internal Red Hat only thing for a brief period, until it first surfaced as part of the Fedora 'xen' package in <a href="http://pkgs.fedoraproject.org/cgit/xen.git/commit/?id=02687b4e3f7fa0db5de34280a2cb7e1a8eb8ff18">January 2006</a>:</p>
+    <p><a href="https://linux.die.net/man/1/virt-install">virt-install</a> is a command line tool for creating new virtual machines via libvirt. It's an important piece of the libvirt ecosystem that has shipped in RHEL5.0 and up, and over a dozen Fedora versions.</p>
+<p>It wasn't always called virt-install though: it started life as xenguest-install.py written by <a href="https://velohacker.com/">Jeremy Katz</a>. I think it was just an internal Red Hat only thing for a brief period, until it first surfaced as part of the Fedora 'xen' package in <a href="https://pkgs.fedoraproject.org/cgit/xen.git/commit/?id=02687b4e3f7fa0db5de34280a2cb7e1a8eb8ff18">January 2006</a>:</p>
 <div class="highlight"><pre><span></span>commit 02687b4e3f7fa0db5de34280a2cb7e1a8eb8ff18
 Author: Stephen Tweedie &lt;sct@fedoraproject.org&gt;
 Date:  Tue Jan 31 16:59:19 2006 +0000
@@ -62,7 +62,7 @@ Date:  Tue Jan 31 16:59:19 2006 +0000
  -p, --paravirt    This guest should be a paravirtualized guest
  -l LOCATION, --location=LOCATION
             Installation source for paravirtualized guest (eg,
-            nfs:host:/path, http://host/path, ftp://host/path)
+            nfs:host:/path, https://host/path, ftp://host/path)
  -x EXTRA, --extra-args=EXTRA
             Additional arguments to pass to the installer with
             paravirt guests
@@ -70,9 +70,9 @@ Date:  Tue Jan 31 16:59:19 2006 +0000
 
 
 <p>All those bits are still working with virt-install today, although many are are deprecated and hidden from the --help output by default.</p>
-<p>In early 2006, libvirt barely even existed, so the xenguest-install.py was generating <a href="http://wiki.xen.org/wiki/Xen_Configuration_File_Options">xen xm</a> config files (basically just raw python code) in /etc/xen.
+<p>In early 2006, libvirt barely even existed, so the xenguest-install.py was generating <a href="https://wiki.xen.org/wiki/Xen_Configuration_File_Options">xen xm</a> config files (basically just raw python code) in /etc/xen.
 Fedora CVS was the canonical home of the script.</p>
-<p>In March 2006, <a href="http://berrange.com/">Dan Berrangé</a> <a href="https://git.fedorahosted.org/cgit/virt-manager.git/commit/?id=3ed0ef3">started work on virt-manager</a>. It was very briefly called gnome-vm-manager, then settled into gnome-virt-manager until July 2006 when it was <a href="https://git.fedorahosted.org/cgit/virt-manager.git/commit/?id=dc0d6db84cfe78c4a479381ead55bbd83c0cca55">renamed to virt-manager</a>.</p>
+<p>In March 2006, <a href="https://berrange.com/">Dan Berrangé</a> <a href="https://git.fedorahosted.org/cgit/virt-manager.git/commit/?id=3ed0ef3">started work on virt-manager</a>. It was very briefly called gnome-vm-manager, then settled into gnome-virt-manager until July 2006 when it was <a href="https://git.fedorahosted.org/cgit/virt-manager.git/commit/?id=dc0d6db84cfe78c4a479381ead55bbd83c0cca55">renamed to virt-manager</a>.</p>
 <p>In August 2006, xenguest-install moved to its own repo, <a href="https://git.fedorahosted.org/cgit/python-virtinst.git/commit/?id=1e2e1aa0ca0b5ed8669be61aa4271a3e8c1d7333">python-xeninst</a>:</p>
 <div class="highlight"><pre><span></span>commit 1e2e1aa0ca0b5ed8669be61aa4271a3e8c1d7333
 Author: Jeremy Katz &lt;katzj@redhat.com&gt;
@@ -85,13 +85,13 @@ Date:  Tue Aug 8 21:37:49 2006 -0400
 
 
 <p>Much of logic was moved to a 'xeninst' module. There were some initial bits for generating libvirt XML, but the primary usage was still generating native xen configuration.</p>
-<p>(Both repositories were hosted in mercurial at hg.et.redhat.com for many years. We eventually <a href="http://www.redhat.com/archives/virt-tools-list/2011-March/msg00056.html">transitioned to git in March 2011</a>. Actually it's amazing it was only 3 years ago: I've pretty much entirely forgotten how to use mercurial despite using it for 4 years prior.)</p>
+<p>(Both repositories were hosted in mercurial at hg.et.redhat.com for many years. We eventually <a href="https://www.redhat.com/archives/virt-tools-list/2011-March/msg00056.html">transitioned to git in March 2011</a>. Actually it's amazing it was only 3 years ago: I've pretty much entirely forgotten how to use mercurial despite using it for 4 years prior.)</p>
 <p>In October 2006, the project was <a href="https://git.fedorahosted.org/cgit/python-virtinst.git/commit/?id=761ccd8a65a79737431aa1415d16b19ef9d8f9c8">renamed python-virtinst</a> and the tool renamed to virt-install. By this point virt-manager was using the xeninst module for guest creation and needed to <a href="https://git.fedorahosted.org/cgit/virt-manager.git/commit/?id=cd946bcfae2960c4769c5f12e235d1026a33328d">handle the rename</a> as well.</p>
 <p>So now python-virtinst was its own standalone package, providing virt-install and a python library named virtinst. Over the next couple years the repo accumulated a few more tools: <a href="https://git.fedorahosted.org/cgit/python-virtinst.git/commit/?id=bfa6c18f94fdb9d30c30df494e4b338745e79f5e">virt-clone in May 2007</a>, <a href="https://git.fedorahosted.org/cgit/python-virtinst.git/commit/?id=c4d45ff7960bd84050bb382d597dc3cfdf3d3882">virt-image in June 2007</a>, and <a href="https://git.fedorahosted.org/cgit/python-virtinst.git/commit/?id=a0401fe359af0220ea3e609861042ad9f000d7d5">virt-convert (originally virt-unpack) in July 2008</a>.</p>
 <p>However over the next few years we had some growing pains with the virtinst module. It wasn't exactly a planned API, rather a collection of code that grew organically from a quick hack of a script. It never received too much thought for future compatibility. The fact that it ended up as a public API was more historic accident than anything. Once we accumulated external users (<a href="https://github.com/cobbler/cobbler/commit/dd569b1834e9611b8390d334e2016b0659253e72">cobbler in March 2007</a> and <a href="https://git.fedorahosted.org/cgit/koji/commit/?id=64cc01be898547d150f0200111ff0e57176ecdd7">koji in July 2010</a>) we were stuck with the API in the name of back compatibility.</p>
 <p>Then there was the general frustration of doing virt-manager development when it evolved in lockstep with virtinst: running upstream virt-manager always required running up to date python-virtinst, which was a barrier to upstream contribution.</p>
-<p>So in February 2012 I layed out some reasons for <a href="http://www.redhat.com/archives/virt-tools-list/2012-February/msg00040.html">dropping virtinst as a public API and merging the code into virt-manager.git</a>, though it didn't fully happen until <a href="https://www.redhat.com/archives/virt-tools-list/2013-April/msg00026.html">april 2013 during the virt-manager 0.10.0 cycle</a>. In the intervening year, I sent patches to koan and koji to move off virtinst to calling the needed virt-* tool directly.</p>
-<p>So nowadays virtinst, virt-install, etc. all live with virt-manager.git. If you're looking for a library that helps handle libvirt XML or create libvirt VMs, check out <a href="http://libvirt.org/git/?p=libvirt-designer.git;a=summary">libvirt-designer</a> and <a href="http://libvirt.org/git/?p=libvirt-glib.git;a=summary">libvirt-gobject/libvirt-gconfig</a>.</p>
+<p>So in February 2012 I layed out some reasons for <a href="https://www.redhat.com/archives/virt-tools-list/2012-February/msg00040.html">dropping virtinst as a public API and merging the code into virt-manager.git</a>, though it didn't fully happen until <a href="https://www.redhat.com/archives/virt-tools-list/2013-April/msg00026.html">april 2013 during the virt-manager 0.10.0 cycle</a>. In the intervening year, I sent patches to koan and koji to move off virtinst to calling the needed virt-* tool directly.</p>
+<p>So nowadays virtinst, virt-install, etc. all live with virt-manager.git. If you're looking for a library that helps handle libvirt XML or create libvirt VMs, check out <a href="https://libvirt.org/git/?p=libvirt-designer.git;a=summary">libvirt-designer</a> and <a href="https://libvirt.org/git/?p=libvirt-glib.git;a=summary">libvirt-gobject/libvirt-gconfig</a>.</p>
   </div>
 
 </main>
@@ -106,11 +106,11 @@ Date:  Tue Aug 8 21:37:49 2006 -0400
             <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3" align="center">
-        <a href="https://crobinso.github.io/feeds/all.atom.xml">RSS</a>
+        <a href="https://blog.wikichoon.com/feeds/all.atom.xml">RSS</a>
       </div>
     </div>
 

@@ -3,20 +3,20 @@
     <head>
         <title>Using CPU host-passthrough with virt-manager - Cole Robinson</title>
         <meta charset="utf-8" />
-        <link href="https://crobinso.github.io/theme/minima-main.css" rel="stylesheet" />
-        <link href="https://crobinso.github.io/theme/coletheme.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="https://crobinso.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
+        <link href="https://blog.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
     </head>
 
     <body id="index" class="archive">
         <div class="wrapper">
             <header class="site-header" role="banner">
-                <a class="site-title" href="https://crobinso.github.io">Cole Robinson</a>
+                <a class="site-title" href="https://blog.wikichoon.com">Cole Robinson</a>
                 <nav class="site-nav">
                 <div class="trigger">
-                    <a class="page-link" href="https://crobinso.github.io">Home</a>
-                    <a class="page-link" href="https://crobinso.github.io/archives.html">Archives</a>
+                    <a class="page-link" href="https://blog.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog.wikichoon.com/archives.html">Archives</a>
                 <!-- -->
                 </div></nav>
              </header>
@@ -27,11 +27,11 @@
     <p class="post-meta">
       <time class="dt-published" datetime="2016-01-15T10:00:00-05:00" itemprop="datePublished">Fri 15 January 2016
       </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
-      </span> • </a> Tags: <a href="https://crobinso.github.io/tag/fedora.html">fedora </a><a href="https://crobinso.github.io/tag/virt.html">virt </a>    </p>
+      </span> • </a> Tags: <a href="https://blog.wikichoon.com/tag/fedora.html">fedora</a> <a href="https://blog.wikichoon.com/tag/virt.html">virt</a>     </p>
   </header>
 
   <div class="post-content">
-    <p>I described virt-manager's CPU model default in <a href="http://blog.wikichoon.com/2014/03/virt-manager-improved-cpu-model-default.html">this post</a>. In that post I explained the difficulties of using either of the libvirt options for mirroring the host CPU: <strong>mode=host-model</strong> still has operational issues, and <strong>mode=host-passthrough</strong> isn't recommended for use with libvirt over supportability concerns.</p>
+    <p>I described virt-manager's CPU model default in <a href="https://blog.wikichoon.com/2014/03/virt-manager-improved-cpu-model-default.html">this post</a>. In that post I explained the difficulties of using either of the libvirt options for mirroring the host CPU: <strong>mode=host-model</strong> still has operational issues, and <strong>mode=host-passthrough</strong> isn't recommended for use with libvirt over supportability concerns.</p>
 <p>Unfortunately since writing that post the situation hasn't improved any, and since host-passthrough is the only reliably way to expose the full capabilities of the host CPU to the VM, users regularly want to enable it. This is particularly apparent if trying to do nested virt, which often doesn't work on Intel CPUs unless host-passthrough is used.</p>
 <p>However we don't explicitly expose this option in virt-manager since it's not generally recommended for libvirt usage. You <em>can</em> however still enable it in virt-manager:</p>
 <ul>
@@ -39,7 +39,7 @@
 <li>Enter <strong>host-passthrough</strong> in the CPU model field</li>
 <li>Click Apply</li>
 </ul>
-<p><a href="http://3.bp.blogspot.com/-NBBPSoa4T6E/Vohv9ZI01YI/AAAAAAAAA1U/_-1K9y7PtU8/s1600/Screenshot%2Bfrom%2B2016-01-02%2B19-48-35.png"><img alt="" height="365" src="https://3.bp.blogspot.com/-NBBPSoa4T6E/Vohv9ZI01YI/AAAAAAAAA1U/_-1K9y7PtU8/s400/Screenshot%2Bfrom%2B2016-01-02%2B19-48-35.png" width="400"></a></p>
+<p><img alt="CPU host passthrough UI" height="365" src="https://blog.wikichoon.com/images/061-using-cpu-host-passthrough-with-virt-1.png" width="400"></p>
   </div>
 
 </main>
@@ -54,11 +54,11 @@
             <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3" align="center">
-        <a href="https://crobinso.github.io/feeds/all.atom.xml">RSS</a>
+        <a href="https://blog.wikichoon.com/feeds/all.atom.xml">RSS</a>
       </div>
     </div>
 

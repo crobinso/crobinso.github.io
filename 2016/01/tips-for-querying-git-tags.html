@@ -3,20 +3,20 @@
     <head>
         <title>Tips for querying git tags - Cole Robinson</title>
         <meta charset="utf-8" />
-        <link href="https://crobinso.github.io/theme/minima-main.css" rel="stylesheet" />
-        <link href="https://crobinso.github.io/theme/coletheme.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="https://crobinso.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
+        <link href="https://blog.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
     </head>
 
     <body id="index" class="archive">
         <div class="wrapper">
             <header class="site-header" role="banner">
-                <a class="site-title" href="https://crobinso.github.io">Cole Robinson</a>
+                <a class="site-title" href="https://blog.wikichoon.com">Cole Robinson</a>
                 <nav class="site-nav">
                 <div class="trigger">
-                    <a class="page-link" href="https://crobinso.github.io">Home</a>
-                    <a class="page-link" href="https://crobinso.github.io/archives.html">Archives</a>
+                    <a class="page-link" href="https://blog.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog.wikichoon.com/archives.html">Archives</a>
                 <!-- -->
                 </div></nav>
              </header>
@@ -27,14 +27,14 @@
     <p class="post-meta">
       <time class="dt-published" datetime="2016-01-20T10:00:00-05:00" itemprop="datePublished">Wed 20 January 2016
       </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
-      </span> • </a> Tags: <a href="https://crobinso.github.io/tag/fedora.html">fedora </a><a href="https://crobinso.github.io/tag/virt.html">virt </a>    </p>
+      </span> • </a> Tags: <a href="https://blog.wikichoon.com/tag/fedora.html">fedora</a> <a href="https://blog.wikichoon.com/tag/virt.html">virt</a>     </p>
   </header>
 
   <div class="post-content">
     <p>With package maintenance, bug triage, and email support, I often need to look at a project's git tags to know about the latest releases, when they were released, and what releases contain certain features. Here's a couple workflow tips that make my life easier.</p>
 <h3>Better git tag listing</h3>
-<p>Based on Peter Hutterer's <a href="http://who-t.blogspot.com/2012/06/git-branch-info.html">'git bi'</a> alias for improved branch listing (which is great and highly recommended), I made one for improved tags output that I mapped as 'git tags'. Output looks like:</p>
-<p><a href="http://1.bp.blogspot.com/-S1JscfM_bNg/U8WjuPH4hYI/AAAAAAAAAEc/6oZXuvPiHh8/s1600/Screenshot+from+2014-07-15+17:56:45.png"><img alt="" height="109" src="http://1.bp.blogspot.com/-S1JscfM_bNg/U8WjuPH4hYI/AAAAAAAAAEc/6oZXuvPiHh8/s1600/Screenshot+from+2014-07-15+17:56:45.png" width="400"></a></p>
+<p>Based on Peter Hutterer's <a href="https://who-t.blogspot.com/2012/06/git-branch-info.html">'git bi'</a> alias for improved branch listing (which is great and highly recommended), I made one for improved tags output that I mapped as 'git tags'. Output looks like:</p>
+<p><img alt="Example 'git tags' output" height="109" src="https://blog.wikichoon.com/images/062-tips-for-querying-git-tags-1.png" width="400"></p>
 <ul>
 <li>Shows tag name, commit message, commit ID, and date, all colorized. Commit message is redundant for many projects that tag the release commit, but it's interesting in some cases.</li>
 <li>Tags are listed by date rather than alphabetically. Some projects change tag string formats, or versioning schemes, that then don't sort correctly when listed alphabetically. Sorting by date makes it easy to see the latest tag. Often I just want to know what the latest tag or the latest stable release is, this makes it easy.</li>
@@ -55,7 +55,7 @@
 
 
 <h3>Find the first tag that contains a commit</h3>
-<p>This seems to come up quite a bit for me. An example is <a href="http://www.redhat.com/archives/libvir-list/2014-July/msg00832.html">here</a>; a user was asking about a virt-install feature, and I wanted to tell them what version it appeared in. I grepped <code>git log</code>, found the commit, then ran:</p>
+<p>This seems to come up quite a bit for me. An example is <a href="https://www.redhat.com/archives/libvir-list/2014-July/msg00832.html">here</a>; a user was asking about a virt-install feature, and I wanted to tell them what version it appeared in. I grepped <code>git log</code>, found the commit, then ran:</p>
 <div class="highlight"><pre><span></span><span class="gp">$</span> git describe --contains 87a611b5470d9b86bf57a71ce111fa1d41d8e2cd
 <span class="go">v1.0.0~201</span>
 </pre></div>
@@ -80,11 +80,11 @@
             <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3" align="center">
-        <a href="https://crobinso.github.io/feeds/all.atom.xml">RSS</a>
+        <a href="https://blog.wikichoon.com/feeds/all.atom.xml">RSS</a>
       </div>
     </div>
 

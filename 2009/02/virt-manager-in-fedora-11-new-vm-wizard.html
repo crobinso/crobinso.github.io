@@ -3,20 +3,20 @@
     <head>
         <title>virt-manager in Fedora 11: 'New VM' wizard redesign - Cole Robinson</title>
         <meta charset="utf-8" />
-        <link href="https://crobinso.github.io/theme/minima-main.css" rel="stylesheet" />
-        <link href="https://crobinso.github.io/theme/coletheme.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="https://crobinso.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
+        <link href="https://blog.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
     </head>
 
     <body id="index" class="archive">
         <div class="wrapper">
             <header class="site-header" role="banner">
-                <a class="site-title" href="https://crobinso.github.io">Cole Robinson</a>
+                <a class="site-title" href="https://blog.wikichoon.com">Cole Robinson</a>
                 <nav class="site-nav">
                 <div class="trigger">
-                    <a class="page-link" href="https://crobinso.github.io">Home</a>
-                    <a class="page-link" href="https://crobinso.github.io/archives.html">Archives</a>
+                    <a class="page-link" href="https://blog.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog.wikichoon.com/archives.html">Archives</a>
                 <!-- -->
                 </div></nav>
              </header>
@@ -27,7 +27,7 @@
     <p class="post-meta">
       <time class="dt-published" datetime="2009-02-27T14:34:00-05:00" itemprop="datePublished">Fri 27 February 2009
       </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
-      </span> • </a> Tags: <a href="https://crobinso.github.io/tag/fedora.html">fedora </a>    </p>
+      </span> • </a> Tags: <a href="https://blog.wikichoon.com/tag/fedora.html">fedora</a>     </p>
   </header>
 
   <div class="post-content">
@@ -35,7 +35,7 @@
 <p>The current wizard has clearly started to show its age. The original design was largely based on xen specific assumptions and the state of libvirt/virtinst at the time: many of those assumptions don't apply today, or require a bit more thought since we now support both xen and qemu based VMs.</p>
 <p>So, some screenshots!</p>
 <p>Page 1: VM Name and Install method</p>
-<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg1-1.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg1-1.png"></a></p>
+<p>(Image is gone)</p>
 <p>We scrapped the 'intro' page: I don't think anyone will miss it. Having the 'name' box occupy an entire page by itself was also a bit overkill, so we did away with that as well.</p>
 <p>One of the biggest changes we've made from the old design is that we no longer ask upfront about paravirt vs. fullvirt, VM architecture, or qemu vs. kvm vs. xenner. For new users, this has been an endless pain point ("Why can't I install a PV kvm guest?" among others) and is really a distinction we don't need to force on people: we are certainly in a position to choose sensible defaults (and for kvm, paravirt/virtio has always been setup in the background depending on what OS version is being installed). The logic for the defaults are now as follows:</p>
 <ul>
@@ -47,16 +47,15 @@
 <p>Also, you'll notice there is a generic 'Computer' icon in the wizard header: this will soon be replaced by a custom icon.</p>
 <p>The one new piece here is the option to choose the libvirt connection to install on. Rather than have the 'New' button on the main manager window be conditionally sensitive, the user can now always launch the wizard, choosing the connection from there.</p>
 <p>Page 2: Install media info</p>
-<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-local.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-local.png"></a></p>
-<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-url.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg2-url.png"></a></p>
+<p>(Image is gone)</p>
 <p>This hasn't deviated much from the current options: the one difference is that the OS Type/Variant choice has been moved to these screens. This will allow us in the future to offer automatic distro detection based on the selected install media (we may have this for URL installs by the time the release goes out).</p>
 <p>Since PXE installs require no extra input, the screen will only have the OS Type/Variant option listed.</p>
 <p>Page 3: CPU + Mem details</p>
-<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg3-1.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg3-1.png"></a></p>
+<p>(Image is gone)</p>
 <p>We dropped the max memory vs. default memory split that is in the existing wizard: it doesn't have much meaning the qemu/kvm world, and even for xen it isn't something that needs to be asked up front. The user can always change it later.</p>
 <p>Also, rather than list tons of warning information about overcommitting vcpus, we simply cap the amount at the number available on the host. If for some reason a user wants to allocate more than the host amount of virtual cpus to a VM (say for development purposes) it can easily be done post-install.</p>
 <p>Page 4: Storage</p>
-<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg4-1.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg4-1.png"></a></p>
+<p>(Image is gone)</p>
 <p>The main change here is that we removed the block device vs. file device dichotomy: we are pretty capable of making this distinction behind the scenes.</p>
 <p>The option is also now available to skip adding storage altogether: this is useful in the case of Live CDs or diskless PXE booting.</p>
 <p>When adding storage, the two options are now:</p>
@@ -65,8 +64,7 @@
 <p>2 - "Use managed or other existing storage" : This allows pointing to an existing path, or provisioning more complex storage on demand (this is dependent on a libvirt storage API aware browser dialog, which is ongoing work. For the time being, this just launches a local GTK file browser).</p>
 <p>The one piece not shown here is the option to choose sparse Vs. non-sparse. We will be putting this back in before the final version is done.</p>
 <p>Page 5: Summary and Advanced Options</p>
-<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-1.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-1.png"></a></p>
-<p><a href="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-2.png"><img alt="" src="http://fedorapeople.org/%7Ecrobinso/virt-manager/newvm2/newvm-pg5-2.png"></a></p>
+<p>(Image is gone)</p>
 <p>The summary section is pretty straight forward, no surprises here. The 'Advanced Options' section encompasses networking, hypervisor, and architecture options. The hypervisor and arch defaults were explained above.</p>
 <p>For networking, the default is:</p>
 <ul>
@@ -94,11 +92,11 @@ Cole</p>
             <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3" align="center">
-        <a href="https://crobinso.github.io/feeds/all.atom.xml">RSS</a>
+        <a href="https://blog.wikichoon.com/feeds/all.atom.xml">RSS</a>
       </div>
     </div>
 

@@ -3,20 +3,20 @@
     <head>
         <title>Easy qemu commandline passthrough with virt-xml - Cole Robinson</title>
         <meta charset="utf-8" />
-        <link href="https://crobinso.github.io/theme/minima-main.css" rel="stylesheet" />
-        <link href="https://crobinso.github.io/theme/coletheme.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="https://crobinso.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
+        <link href="https://blog.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
     </head>
 
     <body id="index" class="archive">
         <div class="wrapper">
             <header class="site-header" role="banner">
-                <a class="site-title" href="https://crobinso.github.io">Cole Robinson</a>
+                <a class="site-title" href="https://blog.wikichoon.com">Cole Robinson</a>
                 <nav class="site-nav">
                 <div class="trigger">
-                    <a class="page-link" href="https://crobinso.github.io">Home</a>
-                    <a class="page-link" href="https://crobinso.github.io/archives.html">Archives</a>
+                    <a class="page-link" href="https://blog.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog.wikichoon.com/archives.html">Archives</a>
                 <!-- -->
                 </div></nav>
              </header>
@@ -27,19 +27,19 @@
     <p class="post-meta">
       <time class="dt-published" datetime="2017-03-24T21:30:00-04:00" itemprop="datePublished">Fri 24 March 2017
       </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
-      </span> • </a> Tags: <a href="https://crobinso.github.io/tag/fedora.html">fedora </a><a href="https://crobinso.github.io/tag/virt.html">virt </a>    </p>
+      </span> • </a> Tags: <a href="https://blog.wikichoon.com/tag/fedora.html">fedora</a> <a href="https://blog.wikichoon.com/tag/virt.html">virt</a>     </p>
   </header>
 
   <div class="post-content">
     <p>Libvirt has supported <a href="https://libvirt.org/drvqemu.html#qemucommand">qemu commandline option passthrough</a> for qemu/kvm VMs for quite a while. The format for it is a bit of a pain though since it requires setting a magic xmlns value at the top of the domain XML. Basically doing it by hand kinda sucks.</p>
-<p>In the recently released <a href="http://blog.wikichoon.com/2017/03/virt-manager-141-released.html">virt-manager 1.4.1</a>, we added a virt-install/virt-xml option <strong>--qemu-commandline</strong> that tweaks option passthrough for new or existing VMs. So for example, if you wanted to add the qemu option string '-device FOO' to an existing VM named <strong>f25</strong>, you can do:</p>
+<p>In the recently released <a href="https://blog.wikichoon.com/2017/03/virt-manager-141-released.html">virt-manager 1.4.1</a>, we added a virt-install/virt-xml option <strong>--qemu-commandline</strong> that tweaks option passthrough for new or existing VMs. So for example, if you wanted to add the qemu option string '-device FOO' to an existing VM named <strong>f25</strong>, you can do:</p>
 <div class="highlight"><pre><span></span>$ ./virt-xml f25 --edit --confirm --qemu-commandline=&quot;-device FOO&quot;
 
 <span class="gd">--- Original XML</span>
 <span class="gi">+++ Altered XML</span>
 <span class="gu">@@ -1,4 +1,4 @@</span>
 <span class="gd">-&lt;domain type=&quot;kvm&quot;&gt;</span>
-<span class="gi">+&lt;domain xmlns:qemu=&quot;http://libvirt.org/schemas/domain/qemu/1.0&quot; type=&quot;kvm&quot;&gt;</span>
+<span class="gi">+&lt;domain xmlns:qemu=&quot;https://libvirt.org/schemas/domain/qemu/1.0&quot; type=&quot;kvm&quot;&gt;</span>
    &lt;name&gt;f25&lt;/name&gt;
    &lt;uuid&gt;9b6f1795-c88b-452a-a54c-f8579ddc18dd&lt;/uuid&gt;
    &lt;memory unit=&quot;KiB&quot;&gt;4194304&lt;/memory&gt;
@@ -69,11 +69,11 @@ Define &#39;f25&#39; with the changed XML? (y/n):
             <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3" align="center">
-        <a href="https://crobinso.github.io/feeds/all.atom.xml">RSS</a>
+        <a href="https://blog.wikichoon.com/feeds/all.atom.xml">RSS</a>
       </div>
     </div>
 

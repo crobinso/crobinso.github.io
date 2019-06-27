@@ -3,20 +3,20 @@
     <head>
         <title>Configuring offlineimap + dovecot + thunderbird - Cole Robinson</title>
         <meta charset="utf-8" />
-        <link href="https://crobinso.github.io/theme/minima-main.css" rel="stylesheet" />
-        <link href="https://crobinso.github.io/theme/coletheme.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/minima-main.css" rel="stylesheet" />
+        <link href="https://blog.wikichoon.com/theme/coletheme.css" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="https://crobinso.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
+        <link href="https://blog.wikichoon.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Cole Robinson Full Atom Feed" />
     </head>
 
     <body id="index" class="archive">
         <div class="wrapper">
             <header class="site-header" role="banner">
-                <a class="site-title" href="https://crobinso.github.io">Cole Robinson</a>
+                <a class="site-title" href="https://blog.wikichoon.com">Cole Robinson</a>
                 <nav class="site-nav">
                 <div class="trigger">
-                    <a class="page-link" href="https://crobinso.github.io">Home</a>
-                    <a class="page-link" href="https://crobinso.github.io/archives.html">Archives</a>
+                    <a class="page-link" href="https://blog.wikichoon.com">Home</a>
+                    <a class="page-link" href="https://blog.wikichoon.com/archives.html">Archives</a>
                 <!-- -->
                 </div></nav>
              </header>
@@ -27,11 +27,11 @@
     <p class="post-meta">
       <time class="dt-published" datetime="2017-05-18T08:01:00-04:00" itemprop="datePublished">Thu 18 May 2017
       </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Cole Robinson</span>
-      </span> • </a> Tags: <a href="https://crobinso.github.io/tag/fedora.html">fedora </a>    </p>
+      </span> • </a> Tags: <a href="https://blog.wikichoon.com/tag/fedora.html">fedora</a>     </p>
   </header>
 
   <div class="post-content">
-    <p>Recently some internal discussions at Red Hat motivated me to look into using <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwi9uomL7_fTAhXFqlQKHaGNCn0QFggnMAA&amp;url=http%3A%2F%2Fwww.offlineimap.org%2F&amp;usg=AFQjCNEWRAYFBP6Wj-bMnmtNno_ht0YKBQ&amp;sig2=N58DcSwDbMJOKjNqKK_Ieg">offlineimap</a>. I had thought about doing this for some time as a step towards giving <a href="http://www.mutt.org/">mutt</a> a try, but for now I decided to keep my original thunderbird setup. This turned out to be a bit more work than I anticipated, so I'm documenting it here.</p>
+    <p>Recently some internal discussions at Red Hat motivated me to look into using <a href="https://github.com/OfflineIMAP/offlineimap">offlineimap</a>. I had thought about doing this for some time as a step towards giving <a href="https://www.mutt.org/">mutt</a> a try, but for now I decided to keep my original thunderbird setup. This turned out to be a bit more work than I anticipated, so I'm documenting it here.</p>
 <p>The primary difficulty is that offlineimap stores mail locally in Maildir format, but thunderbird only reads mbox format. The common solution to this is to serve the offlineimap mail via a local mail server, and have thunderbird connect to that. For the mail server I'm using <a href="https://www.dovecot.org/">dovecot</a>. Getting offlineimap output and dovecot to play nicely together in a format that thunderbird can consume was a bit tricky...</p>
 <p>Here's the ~/.offlineimaprc I settled on:</p>
 <div class="highlight"><pre><span></span><span class="k">[general]</span>
@@ -119,11 +119,11 @@
             <li class="p-name">Cole Robinson </li><li><a class="u-email" href="mailto:">aintdiscole@gmail.com</a></li></ul>
       </div>
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://crobinso.github.io/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/crobinso"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#github"></use></svg> <span class="username">crobinso</span></a></li><li><a href="https://www.twitter.com/aintdiscole"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#twitter"></use></svg> <span class="username">aintdiscole</span></a></li><li><a href="https://www.linkedin.com/in/cole-robinson-484a9912"><svg class="svg-icon"><use xlink:href="https://blog.wikichoon.com/theme/minima-social-icons.svg#linkedin"></use></svg> <span class="username">Cole Robinson</span></a></li></ul>
 </div>
 
       <div class="footer-col footer-col-3" align="center">
-        <a href="https://crobinso.github.io/feeds/all.atom.xml">RSS</a>
+        <a href="https://blog.wikichoon.com/feeds/all.atom.xml">RSS</a>
       </div>
     </div>
 
