@@ -8,7 +8,7 @@
     <p class="post-meta">
       <time class="dt-published" datetime="{{ article.date.isoformat() }}" itemprop="datePublished">{{ article.locale_date }}
       </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ article.author }}</span>
-      </span> • </a> Tags: {% if article.tags %}{% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }} </a>{% endfor %}{% endif %}
+      </span> • </a> Tags: {% if article.tags %}{% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> {% endfor %}{% endif %}
     </p>
   </header>
 
