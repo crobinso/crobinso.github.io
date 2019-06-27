@@ -9,7 +9,7 @@ CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
 
 GITHUB_PAGES_BRANCH=master
-CNAME = "blog2.wikichoon.com"
+CNAME = "blog.wikichoon.com"
 
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)
