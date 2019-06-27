@@ -10,7 +10,7 @@ sys.path.append(os.curdir)
 from pelicanconf import *
 
 # If your site is available via HTTPS, make sure SITEURL begins with https://
-SITEURL = 'https://crobinso.github.io'
+SITEURL = 'https://blog.wikichoon.com'
 RELATIVE_URLS = False
 
 # Disable this, so our back compat feed links stay in place
