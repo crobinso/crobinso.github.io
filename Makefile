@@ -41,9 +41,11 @@ clean:
 
 atomlinks:
 	make clean
-	mkdir -p $(OUTPUTDIR)/feeds/posts/
+	mkdir -p $(OUTPUTDIR)/feeds/posts/default/-
 	# Backcompat symlink for blogger advertised feed
-	ln -fs $(OUTPUTDIR)/feeds/all.atom.xml $(OUTPUTDIR)/feeds/posts/default
+	ln -fs $(OUTPUTDIR)/feeds/all.atom.xml $(OUTPUTDIR)/feeds/posts/default/index.html
+	ln -fs $(OUTPUTDIR)/feeds/fedora.atom.xml $(OUTPUTDIR)/feeds/posts/default/-/fedora
+	ln -fs $(OUTPUTDIR)/feeds/virt.atom.xml $(OUTPUTDIR)/feeds/posts/default/-/virt
 
 serve:
 ifdef PORT
