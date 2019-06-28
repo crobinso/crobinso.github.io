@@ -7,9 +7,7 @@ INPUTDIR=$(BASEDIR)/content
 OUTPUTDIR=$(BASEDIR)/output
 CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
-
-GITHUB_PAGES_BRANCH=master
-CNAME = "blog.wikichoon.com"
+FRONTPAGEOUTPUTDIR=$(CURDIR)/frontpageoutput
 
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)
@@ -71,12 +69,21 @@ publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
 github: publish
+	mkdir -p $(FRONTPAGEOUTPUTDIR)
+	mv $(OUTPUTDIR)/pages/frontpage.html $(FRONTPAGEOUTPUTDIR)/index.html
+	# Update the front page in this repo
 	ghp-import \
 		--message="Generate Pelican site" \
-		--branch=$(GITHUB_PAGES_BRANCH) \
-		--cname=$(CNAME) \
+		--branch=master \
+		--cname=wikichoon.com \
+		$(FRONTPAGEOUTPUTDIR)
+	ghp-import \
+		--message="Generate Pelican site" \
+		--branch=blog-gh-pages \
+		--cname=blog.wikichoon.com \
 		$(OUTPUTDIR)
-	git push origin $(GITHUB_PAGES_BRANCH)
+	git push origin master
+	git push blog blog-gh-pages:gh-pages
 
 
 .PHONY: html help clean regenerate serve serve-global devserver stopserver publish github
