@@ -1,0 +1,3 @@
+Generates wikichoon.com and blog.wikichoon.com. wikichoon.com is the master branch of this repo. blog.wikichoon.com is the gh-pages of my `blog` repo. The Internet tells me google will index the master branch of any github repo and this can cause with SEO for blog posts, hence having a separate repo and branch for hosting the blog web content.
+
+The site theme I use is a bunch of custom work derived from [Pelican simple-bootstrap theme](https://github.com/getpelican/pelican-themes/tree/master/simple-bootstrap), but converted to not use bootstrap and only use [Jeckyll minima](https://github.com/jekyll/minima) CSS.
