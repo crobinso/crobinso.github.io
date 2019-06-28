@@ -15,3 +15,6 @@ RELATIVE_URLS = False
 
 # Disable this, so our back compat feed links stay in place
 DELETE_OUTPUT_DIRECTORY = False
+
+# My google analytics ID
+GOOGLE_ANALYTICS = "UA-142995745-1"
