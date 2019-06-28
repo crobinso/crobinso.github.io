@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 {% block navclass %}active{%endblock%}
 {% block content %}
-<main id="content" class="page-content">
-{% block content_title %}
-{% endblock %}
+        {% block content_title %}
+        {% endblock %}
 
-{% for article in articles_page.object_list %}
+      {% for article in articles_page.object_list %}
         <article class="hentry">
             <div class="post-meta"> {{ article.locale_date }} </div>
             <h3 class="post-link"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
         </article>
-{% endfor %}
-{% include 'pagination.html' %}
-</main>
+      {% endfor %}
+
+      {% include 'pagination.html' %}
 {% endblock content %}
