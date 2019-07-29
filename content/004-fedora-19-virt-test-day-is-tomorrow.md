@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora
 Slug: fedora-19-virt-test-day-is-tomorrow
 Status: published
+Hide: index
 
 The Fedora 19 Virt Test Day is tomorrow, Tuesday May 28th. Check out the test day landing page:
 

@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora
 Slug: virt-manager-in-fedora-11-new-vm-wizard
 Status: published
+Hide: index
 
 There are some pretty big changes queued up for virt-manager in Fedora 11: foremost among them is a completely redesigned 'New Virtual Machine' wizard.
 

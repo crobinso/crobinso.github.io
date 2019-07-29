@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora
 Slug: fedora-18-virt-test-day-is-tomorrow
 Status: published
+Hide: index
 
 The Fedora 18 Virt Test Day is Thursday, November 1st. That's tomorrow!
 

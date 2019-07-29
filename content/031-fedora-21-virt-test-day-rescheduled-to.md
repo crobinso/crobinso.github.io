@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora, virt
 Slug: fedora-21-virt-test-day-rescheduled-to
 Status: published
+Hide: index
 
 Due to Fedora 21 slipping 3 weeks, the virt test day has been rescheduled to September 10th. Landing page is now here:
 

@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora, virt
 Slug: fedora-21-virt-test-day-scheduled-for
 Status: published
+Hide: index
 
 Just a quick note that the Fedora 21 Virt Test Day is scheduled for Wednesday, August 20th 2014. The inprogress landing page is at:
 

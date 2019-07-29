@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora, virt
 Slug: fedora-22-virt-test-day-scheduled-for
 Status: published
+Hide: index
 
 Just a quick note that the Fedora 22 Virt Test Day is scheduled for Thursday April 16th. The inprogress landing page is at:
 

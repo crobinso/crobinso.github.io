@@ -5,10 +5,12 @@
         {% endblock %}
 
       {% for article in articles_page.object_list %}
+      {% if article.hide != "index" %}
         <article class="hentry">
             <div class="post-meta"> {{ article.locale_date }} </div>
             <h3 class="post-link"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
         </article>
+      {% endif %}
       {% endfor %}
 
       {% include 'pagination.html' %}

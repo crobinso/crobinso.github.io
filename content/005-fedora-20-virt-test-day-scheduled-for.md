@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora
 Slug: fedora-20-virt-test-day-scheduled-for
 Status: published
+Hide: index
 
 Just a quick note that the Fedora 20 Virt Test Day is scheduled for Tuesday, Oct 8th. The inprogress landing page is at:
 

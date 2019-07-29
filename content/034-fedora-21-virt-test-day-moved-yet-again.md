@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora, virt
 Slug: fedora-21-virt-test-day-moved-yet-again
 Status: published
+Hide: index
 
 Third times the charm! With the ongoing [F21 alpha delay](https://lists.fedoraproject.org/pipermail/devel/2014-September/202100.html), I requested the virt test day to be pushed back yet again. Now it's on Thursday September 25th. Check out the landing page for more info on the test day:
 

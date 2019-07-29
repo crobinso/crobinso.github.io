@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora, virt
 Slug: fedora-21-virt-test-day-is-thu-sep-25
 Status: published
+Hide: index
 
 The Fedora 21 Virt Test Day is this coming Thu Sep 25. Check out the test day landing page:
 

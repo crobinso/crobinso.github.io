@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora, virt
 Slug: fedora-22-virt-test-day-is-thu-apr-16
 Status: published
+Hide: index
 
 A reminder that the Fedora 22 Virt Test Day is this coming Thu Apr 16. Check out the test day landing page:
 

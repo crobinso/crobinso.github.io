@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora, virt
 Slug: fedora-21-virt-test-day-moved-one-day
 Status: published
+Hide: index
 
 To avoid two back to back test days, we've moved the Fedora 21 virt test day to September 11th. Landing page is now here:
 

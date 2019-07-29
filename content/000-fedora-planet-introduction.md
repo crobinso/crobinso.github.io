@@ -4,6 +4,7 @@ Author: Cole Robinson
 Tags: fedora
 Slug: fedora-planet-introduction
 Status: published
+Hide: index
 
 Hello Fedora land!
 
