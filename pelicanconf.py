@@ -12,6 +12,14 @@ TIMEZONE = 'America/New_York'
 DEFAULT_LANG = 'en'
 DATE = str(datetime.datetime.now())
 
+# Only make certain stock content. Disable category and author pages
+# and make sure they don't show up in the sitemap
+DIRECT_TEMPLATES = ['index', "archives"]
+CATEGORY_URL = False
+CATEGORY_SAVE_AS = False
+AUTHOR_URL = False
+AUTHOR_SAVE_AS = False
+
 PATH = 'content'
 THEME = "theme"
 STATIC_PATHS = ["images"]
