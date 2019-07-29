@@ -83,7 +83,8 @@ github: publish
 		--cname=blog.wikichoon.com \
 		$(OUTPUTDIR)
 	git push origin master
-	git push blog blog-gh-pages:gh-pages
+	git push -f blog blog-gh-pages:gh-pages
+	echo "Make sure the content is deployed: https://github.com/crobinso/blog/deployments"
 
 
 .PHONY: html help clean regenerate serve serve-global devserver stopserver publish github
