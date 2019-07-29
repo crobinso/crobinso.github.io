@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+import datetime
+
 AUTHOR = 'Cole Robinson'
 SITENAME = 'Cole Robinson'
 SITESUBTITLE = "Cole's dev log"
@@ -8,6 +10,7 @@ SITEURL = 'http://localhost:8000'
 FRONTPAGE = 'http://localhost:8000/pages/frontpage.html'
 TIMEZONE = 'America/New_York'
 DEFAULT_LANG = 'en'
+DATE = str(datetime.datetime.now())
 
 PATH = 'content'
 THEME = "theme"
