@@ -11,6 +11,7 @@ from pelicanconf import *
 
 # If your site is available via HTTPS, make sure SITEURL begins with https://
 SITEURL = 'https://blog.wikichoon.com'
+FRONTPAGE = 'https://wikichoon.com'
 RELATIVE_URLS = False
 
 # Disable this, so our back compat feed links stay in place
