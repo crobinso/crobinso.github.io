@@ -3,7 +3,7 @@
 {% block content %}
       <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
         <header>
-          <h2 class="post-title" itemprop="name headline">{{ article.title }}</h2>
+          <h1 class="post-title givemecolor" itemprop="name headline">{{ article.title }}</h2>
           <p class="post-meta">
             <time class="dt-published" datetime="{{ article.date.isoformat() }}" itemprop="datePublished">{{ article.locale_date }}
             </time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ article.author }}</span>

@@ -21,3 +21,8 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
+.givemecolor {
+  /* Intermediate purple between link text colors */
+  color: #4227b0;
+}
