@@ -32,3 +32,7 @@ ARTICLE_URL = "{date:%Y}/{date:%m}/{slug}.html"
 ARTICLE_SAVE_AS = "{date:%Y}/{date:%m}/{slug}.html"
 
 GOOGLE_ANALYTICS = "example-test"
+
+PLUGINS = [
+    "extended_sitemap",
+]
