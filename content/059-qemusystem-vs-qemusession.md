@@ -13,7 +13,7 @@ For QEMU/KVM (and a few other hypervisors), there's a concept of **system** URI 
 -   **qemu:///session**: Connects to a libvirtd instance running as the app user, the daemon is auto-launched if it's not already running. libvirt and all VMs run as the app user. All config and logs and disk images are stored in $HOME. This means each user has their own qemu:///session VMs, separate from all other users. gnome-boxes and libguestfs use this by default.
 
 
-That describes the 'what', but the 'why' of it is a bigger story. The privilege level of the daemon and VMs have pros and cons depending on your usecase. The easiest way to understand the benefit of one over the other is to list the [problems]{.underline} with each setup.
+That describes the 'what', but the 'why' of it is a bigger story. The privilege level of the daemon and VMs have pros and cons depending on your usecase. The easiest way to understand the benefit of one over the other is to list the <u>problems</u> with each setup.
 
 <br/>
 **qemu:///system** runs libvirtd as root, and access is mediated by polkit. This means if you are connecting to it as a regular user (like when launching virt-manager), you need to enter the host root password, which is annoying and not generally desktop usecase friendly. There are [ways to work around it](https://blog.wikichoon.com/2016/01/polkit-password-less-access-for-libvirt.html) but it requires explicit admin configuration.
@@ -27,7 +27,7 @@ However because nothing in the chain is privileged, any VM setup tasks that need
 
 The default qemu mode in this case is [usermode networking (or SLIRP)](https://wiki.qemu.org/Documentation/Networking#User_Networking_.28SLIRP.29). This is an IP stack implemented in userspace. This has many drawbacks: the VM can not easily be accessed by the outside world, the VM can access talk to the outside world but only over a limited number of networking protocols, and it's very slow.
 
-There [is]{.underline} an option for qemu:///session VMs to use a privileged networking setup, via the setuid [qemu-bridge-helper](https://wiki.qemu.org/Features-Done/HelperNetworking). Basically the host admin sets up a bridge, adds it to a whitelist at /etc/qemu/bridge.conf, then it's available for unprivileged qemu instances. By default on Fedora this contains 'virbr0' which is the default virtual network bridge provided by the system libvirtd instance, and what qemu:///system VMs typically use.
+There <u>is</u> an option for qemu:///session VMs to use a privileged networking setup, via the setuid [qemu-bridge-helper](https://wiki.qemu.org/Features-Done/HelperNetworking). Basically the host admin sets up a bridge, adds it to a whitelist at /etc/qemu/bridge.conf, then it's available for unprivileged qemu instances. By default on Fedora this contains 'virbr0' which is the default virtual network bridge provided by the system libvirtd instance, and what qemu:///system VMs typically use.
 
 gnome-boxes originally used usermode networking, but switched around Fedora 21 timeframe to use virbr0 via qemu-bridge-helper. But that's dependent on virbr0 being set up correctly by the host admin, or via package install (libvirt-daemon-config-network package on Fedora).
 
@@ -38,7 +38,7 @@ qemu:///session also misses some less common features that require host admin pr
 
 qemu:///system is completely fine for big apps like oVirt and Openstack that require admin access to the virt hosts anyways.
 
-virt-manager largely defaults to qemu:///system because that's what it has always done, and that default long precedes qemu-bridge-helper. We could switch but it would just trade one set of issues for another. virt-manager [can]{.underline} be used with qemu:///session though (or any URI for that matter).
+virt-manager largely defaults to qemu:///system because that's what it has always done, and that default long precedes qemu-bridge-helper. We could switch but it would just trade one set of issues for another. virt-manager <u>can</u> be used with qemu:///session though (or any URI for that matter).
 
 libguestfs uses qemu:///session since it avoids all the permission issues and the VM appliance doesn't really care about networking.
 

@@ -5,7 +5,7 @@ Tags: fedora
 Slug: using-git-remote-hg-with-bitbucket
 Status: published
 
-Occasionally I want to contribute to a project using mercurial on bitbucket.org (like pylint). Since I always forget the steps, I'm documenting here how I've managed that without having to actually [use]{.underline} mercurial.
+Occasionally I want to contribute to a project using mercurial on bitbucket.org (like pylint). Since I always forget the steps, I'm documenting here how I've managed that without having to actually <u>use</u> mercurial.
 
 -   From bitbucket.org, log in, find the repo you want to contribute to, use the web UI to fork it under your account.
 -   `yum install git-remote-hg`
