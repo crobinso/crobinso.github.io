@@ -13,7 +13,9 @@
       gtag('config', '{{ GOOGLE_ANALYTICS }}');
     </script>
     {% endif %}
-
+    {% if article %}
+    <link rel="canonical" href="{{ SITEURL }}/{{ article.url }}"/>
+    {% endif %}
     {% block head %}
       <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
       <meta charset="utf-8" />
