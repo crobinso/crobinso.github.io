@@ -9,11 +9,11 @@ Status: published
 
 The page referenced says to use systemd links. However after struggling with that for a while I'm that's only relevant to systemd-networkd usage and doesn't apply to Fedora's default use of NetworkManager. So I needed another way.
 
-Long story short I ended up with some custom udev rules that are patterned after the old 70-persistent-net.rules file:
+Long story short I ended up with some custom udev rules that are patterned after the old 70-persistent-net.rules file. Replace `$MYMAC1` and `$MYMAC2` with your specific values
 
 
 ```console
 $ cat /etc/udev/rules.d/99-cole-nic-names.rules
-SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="70:8b:cd:80:e5:5f", ATTR{type}=="1", NAME="lan0main"
-SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="68:05:ca:1a:f5:da", ATTR{type}=="1", NAME="lan1pcie"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="$MYMAC1", ATTR{type}=="1", NAME="lan0main"
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="$MYMAC2", ATTR{type}=="1", NAME="lan1pcie"
 ```

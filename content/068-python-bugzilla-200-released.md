@@ -1,4 +1,4 @@
-Title: python-bugzilla 2.0.0 released!
+Title: python-bugzilla 2.0.0 released
 Date: 2017-02-08 16:22
 Author: Cole Robinson
 Tags: fedora

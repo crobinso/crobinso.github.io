@@ -14,10 +14,10 @@ It also has the added benefit of unmapping the help dialog from F1, which I've n
 It's pretty easy to make the change on F23:
 
 
--   From gnome-shell desktop, go to Activities-\>Keyboard
--   Navigate to Shortcuts-\>Custom Shortcuts
--   Under launchers, disable 'Launch help browser'
--   Under 'Custom shortcuts', click '+', map `F1` to `gnome-terminal`
+-   From gnome-shell desktop, go to **Activities->Keyboard**
+-   Navigate to **Shortcuts->Custom Shortcuts**
+-   Under launchers, disable **Launch help browser**
+-   Under **Custom shortcuts**, click **+**, map `F1` to `gnome-terminal`
 
 
 I'm sure if you use a single terminal + tmux, or guake, this isn't interesting, but maybe it will help someone like it helped me.

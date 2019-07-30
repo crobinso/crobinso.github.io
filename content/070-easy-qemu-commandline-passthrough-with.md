@@ -7,7 +7,7 @@ Status: published
 
 Libvirt has supported [qemu commandline option passthrough](https://libvirt.org/drvqemu.html#qemucommand) for qemu/kvm VMs for quite a while. The format for it is a bit of a pain though since it requires setting a magic xmlns value at the top of the domain XML. Basically doing it by hand kinda sucks.
 
-In the recently released [virt-manager 1.4.1](https://blog.wikichoon.com/2017/03/virt-manager-141-released.html), we added a virt-install/virt-xml option **--qemu-commandline** that tweaks option passthrough for new or existing VMs. So for example, if you wanted to add the qemu option string '-device FOO' to an existing VM named **f25**, you can do:
+In the recently released [virt-manager 1.4.1](https://blog.wikichoon.com/2017/03/virt-manager-141-released.html), we added a virt-install/virt-xml option `--qemu-commandline` that tweaks option passthrough for new or existing VMs. So for example, if you wanted to add the qemu option string `-device FOO` to an existing VM named **f25**, you can do:
 
 
 ```diff

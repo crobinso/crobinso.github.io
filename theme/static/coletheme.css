@@ -26,3 +26,13 @@ img {
   /* Intermediate purple between link text colors */
   color: #4227b0;
 }
+
+h4 {
+    font-weight: bold;
+}
+
+blockquote {
+  color: #007878;
+  font-family: monospace;
+  font-size: 16px;
+}

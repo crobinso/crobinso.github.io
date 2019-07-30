@@ -51,3 +51,5 @@ unstashing
 Nowadays I don't even attempt the pull, `git up` is my reflex. (And yes I should just make it a reflex that I switch to a branch before doing any hacking...)
 
 Nice to see that nowadays git-up is packaged in fedora, so grab it with `sudo yum install rubygem-git-up`
+
+(Edit 2019: The ruby version has been abandoned, but there's an equivalent available via python equivalent I'm using now: <https://pypi.org/project/git-up/>)

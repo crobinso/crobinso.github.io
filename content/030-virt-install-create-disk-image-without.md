@@ -15,4 +15,4 @@ However there's a shortcut since version 1.0.0, just specify the size:
 
 `virt-install --disk size=10 ...`
 
-virt-install will create a disk image in the [default pool](https://blog.wikichoon.com/2014/07/virt-manager-changing-default-storage.html), and name it based on the VM name and disk image format, typically $vmname.qcow2
+virt-install will create a disk image in the [default pool](https://blog.wikichoon.com/2014/07/virt-manager-changing-default-storage.html), and name it based on the VM name and disk image format, typically `$vmname.qcow2`.

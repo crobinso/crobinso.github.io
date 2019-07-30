@@ -9,11 +9,12 @@ One of the new features in [virt-manager 1.2.0](https://blog.wikichoon.com/2015/
 
 First a bit about terminology: When UEFI is packaged up to run in an x86 VM, it's often called **OVMF**. When UEFI is packaged up to run in an AArch64 VM, it's often called **AAVMF**. But I'll just refer to all of it as UEFI.
 
-<br/>
-### Using UEFI with virt-install and virt-manager
 
+#### Using UEFI with virt-install and virt-manager
 
 The first step to enable this for VMs is to install the binaries. UEFI still has some [licensing issues](https://fedoraproject.org/wiki/Using_UEFI_with_QEMU#EDK2_Licensing_Issues) that make it incompatible with Fedora's policies, so the bits are hosted in an external repo. Details for installing the repo and UEFI bits are [over here](https://fedoraproject.org/wiki/Using_UEFI_with_QEMU#Firmware_installation).
+
+(Edit: those licensing issues were resolved and now the packages are [natively available in Fedora repos](http://localhost:8000/2016/06/uefi-virt-support-now-in-official.html))
 
 Once the bits are installed (and you're on Fedora 22 or later), virt-manager and virt-install provide simple options to enable UEFI when creating VMs.
 
@@ -21,16 +22,14 @@ Once the bits are installed (and you're on Fedora 22 or later), virt-manager and
 
 For virt-install it's as simple as doing: `sudo virt-install --boot uefi ...`
 
-virt-install will get the binary paths from libvirt and set everything up with the optimal config. If virt-install can't figure out the correct parameters, like if no UEFI binaries are installed, you'll see an error like: ERROR    Error: --boot uefi: Don't know how to setup UEFI for arch 'x86'
+virt-install will get the binary paths from libvirt and set everything up with the optimal config. If virt-install can't figure out the correct parameters, like if no UEFI binaries are installed, you'll see an error like: `ERROR    Error: --boot uefi: Don't know how to setup UEFI for arch 'x86'`
 
-See 'virt-install --boot help' if you need to tweak the parameters individually.
-
-
-<br/>
-### Implementing support in applications
+See `virt-install --boot help` if you need to tweak the parameters individually.
 
 
-Libvirt needs to know about UEFIto NVRAM config file mapping, so it can advertise it to tools like virt-manager/virt-install. Libvirt looks at a hardcoded list of known host paths to see if any firmware is installed, and if so, lists those paths in domain capabilities output (virsh domcapabilities). Libvirt in Fedora 22+ knows to look for the paths provided by the repo mentioned above, so just installing the firmware is sufficient to make libvirt advertise UEFI support.
+#### Implementing support in applications
+
+Libvirt needs to know about UEFI to NVRAM config file mapping, so it can advertise it to tools like virt-manager/virt-install. Libvirt looks at a hardcoded list of known host paths to see if any firmware is installed, and if so, lists those paths in domain capabilities output (`virsh domcapabilities`). Libvirt in Fedora 22+ knows to look for the paths provided by the repo mentioned above, so just installing the firmware is sufficient to make libvirt advertise UEFI support.
 
 The domain capabilities output only lists the firmware path and the associated variable store path. Notably lacking is any indication of what architecture the binaries are meant for. So tools need to determine this mapping themselves.
 

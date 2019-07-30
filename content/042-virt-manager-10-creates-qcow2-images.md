@@ -29,13 +29,13 @@ Kevin Wolf, one of the QEMU block maintainers, explains it in [this mail](https:
 >
 > qemu-img amend -f qcow2 -o compat=0.10 test.qcow2
 
-As explained, qemu-img with QEMU 1.7+ also defaults to lazy\_refcounts/compat=1.1, but also provides a 'qemu-img amend' tool to easily convert between the two formats.
+As explained, qemu-img with QEMU 1.7+ also defaults to `lazy_refcounts`/`compat=1.1`, but also provides a `qemu-img amend` command to easily convert between the two formats.
 
 Unfortunately that command is not available on Fedora 20 and older, however you can use the pre-existing 'qemu-img convert' command:
 
 `qemu-img convert -f qcow2 -O qcow2 -o compat=0.10 $ORIGPATH $NEWPATH`
 
 
-Beware though, converting between two qcow2 images will drop all internal snapshots in the new image, so only use that option if you don't need to preserve any snapshot data. 'qemu-img amend' <u>will</u> preserve snapshot data.
+Beware though, converting between two qcow2 images will drop all internal snapshots in the new image, so only use that option if you don't need to preserve any snapshot data. `qemu-img amend` <u>will</u> preserve snapshot data.
 
-(Unfortunately at this time virt-manager doesn't provide any way in the UI to \_not\_ use lazy\_refcounts, but you could always use qemu-img/virsh to create a disk image outside of virt-manager, and select it when creating a new VM.)
+(Unfortunately at this time virt-manager doesn't provide any way in the UI to <u>not</u> use `lazy_refcounts`, but you could always use `qemu-img` or `virsh` to create a disk image outside of virt-manager, and select it when creating a new VM.)

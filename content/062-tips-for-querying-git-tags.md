@@ -9,7 +9,7 @@ Status: published
 With package maintenance, bug triage, and email support, I often need to look at a project's git tags to know about the latest releases, when they were released, and what releases contain certain features. Here's a couple workflow tips that make my life easier.
 
 
-### Better git tag listing
+#### Better git tag listing
 
 Based on Peter Hutterer's ['git bi'](https://who-t.blogspot.com/2012/06/git-branch-info.html) alias for improved branch listing (which is great and highly recommended), I made one for improved tags output that I mapped as 'git tags'. Output looks like:
 
@@ -37,7 +37,7 @@ done'"
 
 
 
-### Find the first tag that contains a commit
+#### Find the first tag that contains a commit
 
 This seems to come up quite a bit for me. An example is [here](https://www.redhat.com/archives/libvir-list/2014-July/msg00832.html); a user was asking about a virt-install feature, and I wanted to tell them what version it appeared in. I grepped `git log`, found the commit, then ran:
 
@@ -55,6 +55,6 @@ This often comes in handy with backporting as well: a developer will point me at
 Another tip here is to use the --match option to only search tags matching a particular glob. I've used this to filter out matching against a maintenance or bugfix release branch, when I only wanted to search major version releases.
 
 
-### Don't pull tags from certain remotes
+#### Don't pull tags from certain remotes
 
 For certain repos like qemu.git, I add a lot of git remotes pointing to individual developer's trees for occasional patch testing. However if trees have lots of non-upstream tags, like for use with pull-requests, they can interfere with my workflow for backporting patches. Use the --no-tags option for this: `git remote add --no-tags $repo`

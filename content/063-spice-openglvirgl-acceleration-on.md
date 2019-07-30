@@ -10,7 +10,7 @@ New in Fedora 24 virt is 3D accelerated SPICE graphics, via [Virgl](https://virg
 I'll explain below how you can test things on Fedora 24, but first let's cover the hurdles and caveats. This is far from being something that can be turned on by default and there's still serious integration issues to iron out. All of this is regarding usage with libvirt tools.
 
 
-### Caveats and known issues
+#### Caveats and known issues
 
 -   This doesn't work with qemu:///system yet, which is what [virt-manager uses by default](https://blog.wikichoon.com/2016/01/qemusystem-vs-qemusession.html). Permissions and [cgroup access](https://www.redhat.com/archives/libvir-list/2016-May/msg01435.html) are problematic at the moment. qemu:///session (the gnome-boxes default) is saved from some of these issues, but it's still affected by...
 -   [svirt/selinux issues](https://bugzilla.redhat.com/show_bug.cgi?id=1337333). We haven't come up with a plan here yet.
@@ -22,7 +22,7 @@ I'll explain below how you can test things on Fedora 24, but first let's cover t
 Because of these issues, we haven't exposed this as a UI knob in any of the tools yet, to save us some redundant bug reports for the above issues from users who are just clicking a cool sounding check box :) Instead you'll need to explicitly opt in via the command line.
 
 
-### Testing it out
+#### Testing it out
 
 You'll need the following packages (or later) to test this:
 

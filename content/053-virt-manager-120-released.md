@@ -1,4 +1,4 @@
-Title: virt-manager 1.2.0 released!
+Title: virt-manager 1.2.0 released
 Date: 2015-05-04 21:55
 Author: Cole Robinson
 Tags: fedora, virt

@@ -20,13 +20,13 @@ The libvirt APIs support two different types of snapshots with qemu/kvm.
 #### Internal snapshots
 
 
-Internal snapshots are the snapshots that QEMU has supported for a long time. Libvirt refers to them as 'internal' because all the data is stored as part of the qcow2 disk image: if you have a VM with a single qcow2 disk image and take 10 snapshots, you still have only one file to manage. This is the default snapshot mode if using the 'virsh snapshot-\*' commands.
+Internal snapshots are the snapshots that QEMU has supported for a long time. Libvirt refers to them as 'internal' because all the data is stored as part of the qcow2 disk image: if you have a VM with a single qcow2 disk image and take 10 snapshots, you still have only one file to manage. This is the default snapshot mode if using the `virsh snapshot-*` commands.
 
 These snapshots can be combine disk and VM memory state for 'checkpointing', so you can jump back and forth between a saved running VM state. A snapshot of an offline VM can also be performed, and only the disk contents will be saved.
 
 Cons:
 
--   Only works with qcow2 disk images. Since virt-manager has historically used raw images, pre-existing VMs may not be able to work with this type.
+-   Only works with qcow2 disk images. Since `virt-manager` has historically used raw images, pre-existing VMs may not be able to work with this type.
 -   They are non-live, meaning the VM is paused while all the state is saved. For end users this likely isn't a problem, but if you are managing a public server, minimizing downtime is essential.
 -   Historically they were quite slow, but this has improved quite a bit with QEMU 1.6+
 
@@ -45,20 +45,20 @@ However that's mostly where the benefits end. Compared to internal snapshots, wh
 #### virt-manager support
 
 
-Understandably we decided to go with internal snapshots in virt-manager's UI. To facilitate this, we've changed the default disk image for new qemu/kvm VMs to **qcow2**.
+Understandably we decided to go with internal snapshots in the `virt-manager` UI. To facilitate this, we've changed the default disk image for new qemu/kvm VMs to **qcow2**.
 
 The snapshot UI is reachable via the VM details toolbar and menu:
 
 
-![Snapshot UI 1]({static}/images/013-snapshot-support-in-virt-manager-1.png){width="320" height="158"}
+![virt-manager Snapshot UI 1]({static}/images/013-snapshot-support-in-virt-manager-1.png){width="320" height="158"}
 
 
-That button will be disabled with an informative tool tip if snapshots aren't supported, such as if the the disk image isn't qcow2, or using a libvirt driver like xen which doesn't have snapshot support wired up.
+That button will be disabled with an informative tool tip if snapshots aren't supported, such as if the the disk image isn't qcow2, or using a libvirt driver like Xen which doesn't have snapshot support wired up.
 
 Here's what the main screen looks like:
 
 
-![Snapshot UI 2]({static}/images/013-snapshot-support-in-virt-manager-2.png){width="640" height="627"}
+![virt-manager Snapshot UI 2]({static}/images/013-snapshot-support-in-virt-manager-2.png){width="640" height="627"}
 
 
 It's pretty straight forward. The column on the left lists all the snapshots. The 'VM State' means *the state the VM was in when the snapshot was taken*. So running/reverting to a 'Running' snapshot means the VM will end up in a running state, a 'Shutoff' snapshot will end up with the VM shutoff, etc.
@@ -70,7 +70,7 @@ Internal snapshots are all independent of one another. You can take 5 successive
 Run/revert to a snapshot with the play button along the bottom. Create a new snapshot by hitting the + button. The wizard is pretty simple:
 
 
-![Snapshot UI 3]({static}/images/013-snapshot-support-in-virt-manager-3.png){width="359" height="400"}
+![virt-manager Snapshot UI 3]({static}/images/013-snapshot-support-in-virt-manager-3.png){width="359" height="400"}
 
 
-That's about it. Give it a whirl in virt-manager 1.0 and [file a bug](https://virt-manager.org/bugs/) if you hit any issues.
+That's about it. Give it a whirl in `virt-manager` and [file a bug](https://virt-manager.org/bugs/) if you hit any issues.
