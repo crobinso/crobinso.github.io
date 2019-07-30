@@ -19,3 +19,6 @@ DELETE_OUTPUT_DIRECTORY = False
 
 # My google analytics ID
 GOOGLE_ANALYTICS = "UA-142995745-1"
+
+# My disqus ID
+DISQUS_SHORTID = "wikichoon-com"

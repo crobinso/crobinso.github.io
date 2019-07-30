@@ -11,6 +11,7 @@ FRONTPAGE = 'http://localhost:8000/pages/frontpage.html'
 TIMEZONE = 'America/New_York'
 DEFAULT_LANG = 'en'
 DATE = str(datetime.datetime.now())
+DISQUS_SHORTID = "some-fake-disqus-shortid-wikichoon-com"
 
 # Only make certain stock content. Disable category and author pages
 # and make sure they don't show up in the sitemap
