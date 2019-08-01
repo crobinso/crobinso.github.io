@@ -14,7 +14,9 @@ There's a simple workaround for this. Generate a query URL using the bugzilla we
 
 For example, say I go to the bugzilla web UI and say 'show me all open, upstream libvirt bugs that haven't received a comment in since 2013'. It generates a massive URL. Here's what the URL looks like:
 
-> https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=POST&bug_status=MODIFIED&bug_status=ON_DEV&bug_status=ON_QA&bug_status=VERIFIED&bug_status=RELEASE_PENDING&classification=Community&component=libvirt&f1=longdesc&list_id=2372821&n1=1&o1=changedafter&product=Virtualization%20Tools&query_format=advanced&v1=2013-12-31
+```
+https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=POST&bug_status=MODIFIED&bug_status=ON_DEV&bug_status=ON_QA&bug_status=VERIFIED&bug_status=RELEASE_PENDING&classification=Community&component=libvirt&f1=longdesc&list_id=2372821&n1=1&o1=changedafter&product=Virtualization%20Tools&query_format=advanced&v1=2013-12-31
+```
 
 Just pass that that string as `$URL` in the above command, and you should see the same results as the web search (if your results aren't the same, you might need to do `bugzilla login` first to cache credentials).
 
