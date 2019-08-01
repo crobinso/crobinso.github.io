@@ -36,3 +36,18 @@ blockquote {
   font-family: monospace;
   font-size: 16px;
 }
+
+
+/* Because I'm only using the right footer column for an
+ * RSS link, redo the spacing to look nicer */
+.footer-col-1 {
+  width: -webkit-calc(40% - (30px / 2));
+  width: calc(40% - (30px / 2)); }
+
+.footer-col-2 {
+  width: -webkit-calc(45% - (30px / 2));
+  width: calc(45% - (30px / 2)); }
+
+.footer-col-3 {
+  width: -webkit-calc(15% - (30px / 2));
+  width: calc(15% - (30px / 2)); }
