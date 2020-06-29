@@ -19,16 +19,20 @@ Thankfully with **bugzilla 5.0** and later there's a better option: API keys. He
 - Select **API Keys**
 - Generate an API key with an optional comment like `python-bugzilla`
 
-Afterwards the screen will look something like this:
+Afterwards the screen will look something like this (updated in June 2020):
 
-![Bugzilla web UI API key setup]({static}/images/073-python-bugzilla-bugzilla-50-api-keys-1.png){width="640" height="384"}
+![Bugzilla web UI API key setup]({static}/images/073-python-bugzilla-bugzilla-50-api-keys-2.png){width="640" height="384"}
 
 
-`MY-EXAMPLE-API-KEY` is not my actual key, I just replaced it for demo purposes. The actual key is a long string of characters and numbers. Copy that string value and write a bugzillarc file like this:
+`MY-FAKE-KEY` is not my actual key, I replaced it for demo purposes. The actual key is a long string of characters and numbers.
+
+On `bugzilla.redhat.com` the key is only visible in the red box when the key is initially created; refreshing the page will only show the numeric `API key ID` which is not what you want. So if you missed copying that value the first time, revoke the key and create a new one.
+
+Once you've copied your key, write a bugzillarc file like this:
 ```ini
 $ cat ~/.config/python-bugzilla/bugzillarc
 [bugzilla.redhat.com]
-api_key=MY-EXAMPLE-API-KEY
+api_key=MY-FAKE-KEY
 ```
 
 That's it, `/usr/bin/bugzilla` and python-bugzilla using tools should pick it up automagically. Note, API keys are as good as passwords in certain ways, so treat it with the same secrecy you would treat a password.
