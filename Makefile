@@ -84,7 +84,6 @@ github: publish
 		$(OUTPUTDIR)
 	git push origin master
 	git push -f blog blog-gh-pages:gh-pages
-	echo "Make sure the content is deployed: https://github.com/crobinso/blog/deployments"
-
+	@echo -e "\n\nMake sure the content is deployed: https://github.com/crobinso/blog/deployments"
 
 .PHONY: html help clean regenerate serve serve-global devserver stopserver publish github
