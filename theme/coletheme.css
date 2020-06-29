@@ -1,0 +1,53 @@
+/* Cole's custom css overrides on top of minima */
+:root {
+  /* A darker gray background */
+  --color-default-back: #f0f0f0;
+
+  /* Deepen the greys to match */
+  --color-grey: #626262;
+  --color-grey-light: #c8c8c8;
+  --color-grey-dark: #222222;
+
+  /* Purple tones for links, inspired from here: https://colorhunt.co/palette/152058 */
+  --color-link-text: #614ad3;
+  /* Make the link text a bit darker */
+  --color-link-text: #5e47d0;
+  --color-link-visited-text: #2d248a;
+}
+
+/* Center images by default */
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.givemecolor {
+  /* Intermediate purple between link text colors */
+  color: #4227b0;
+}
+
+h4 {
+    font-weight: bold;
+}
+
+blockquote {
+  color: #007878;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+
+/* Because I'm only using the right footer column for an
+ * RSS link, redo the spacing to look nicer */
+.footer-col-1 {
+  width: -webkit-calc(40% - (30px / 2));
+  width: calc(40% - (30px / 2)); }
+
+.footer-col-2 {
+  width: -webkit-calc(45% - (30px / 2));
+  width: calc(45% - (30px / 2)); }
+
+.footer-col-3 {
+  width: -webkit-calc(15% - (30px / 2));
+  width: calc(15% - (30px / 2)); }
