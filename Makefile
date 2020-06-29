@@ -36,6 +36,7 @@ help:
 
 clean:
 	[ ! -d $(OUTPUTDIR) ] || rm -rf $(OUTPUTDIR)
+	[ ! -d $(FRONTPAGEOUTPUTDIR) ] || rm -rf $(FRONTPAGEOUTPUTDIR)
 
 atomlinks:
 	make clean
@@ -67,10 +68,15 @@ devserver:
 publish:
 	make atomlinks
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
-
-github: publish
+	# Custom changes for blog frontpage
 	mkdir -p $(FRONTPAGEOUTPUTDIR)
 	mv $(OUTPUTDIR)/pages/frontpage.html $(FRONTPAGEOUTPUTDIR)/index.html
+	# svg can not be accessed cross domain, so we need to put a theme copy
+	# At wikichoon.com for the front page to access
+	cp -r $(OUTPUTDIR)/theme $(FRONTPAGEOUTPUTDIR)/theme
+	sed -i -e "s%blog.wikichoon.com/theme%wikichoon.com/theme%g" $(FRONTPAGEOUTPUTDIR)/index.html
+
+github: publish
 	# Update the front page in this repo
 	ghp-import \
 		--message="Generate Pelican site" \
