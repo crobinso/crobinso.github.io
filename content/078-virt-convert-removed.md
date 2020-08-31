@@ -26,3 +26,5 @@ can get similar results by extracting the relevant disk image from the
 `.vmx` or `.ovf` config, pass it to `virt-manager` or `virt-install`, and let
 those tools fill in the defaults. In truth that's about all `virt-convert` did in
 to begin with.
+
+Please see [`virt-v2v`](https://libguestfs.org/virt-v2v.1.html) for an actively maintained tool that can covert OVA/OVF appliances to libvirt + KVM. [This redhat.com article](https://www.redhat.com/en/blog/importing-vms-kvm-virt-v2v) describes an example conversion.
